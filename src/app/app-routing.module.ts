@@ -8,9 +8,9 @@ import { VinoDetailComponent } from './vino/vino-detail/vino-detail.component';
 
 const routes: Routes = [
   { path: 'vinos', component: VinoListComponent },
-  { path: 'vinos/:id', component: VinoDetailComponent },
-  { path: 'vinos/:id/editar', component: VinoEditComponent },
   { path: 'vinos/nuevo', component: VinoNewComponent },
+  { path: 'vinos/:id', component: VinoDetailComponent },
+  { path: 'vinos/:id/editar', component: VinoEditComponent }
 ];
 
 @NgModule({
