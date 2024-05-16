@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-lett">
+            <h1 class="mt-5">Listado de vinos</h1>
+        </div>
+    </div>
+    <br><br>
+    <a href="/vinos_shop/index.php/admin/nuevo_vino" class="btn btn-primary">Nuevo vino</a>
+    <br><br>
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Añada</th>
+                        <th scope="col">Bodega</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vino of listaVinos">
+                        <th scope="row">{{ vino.id }}</th>
+                        <td>{{ vino.nombre }}</td>
+                        <td>{{ vino.anada }}</td>
+                        <td>{{ vino.bodega }}</td>
+                        <td>{{ vino.tipo }}</td>
+                        <td><a><img src="\assets\images\edit_pencil.png" width=20px></a></td>
+                        <td><a><img src="\assets\images\delete_bin.png" width=20px></a></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
