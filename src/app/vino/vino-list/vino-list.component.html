@@ -24,7 +24,7 @@
                 <tbody>
                     <tr *ngFor="let vino of listaVinos">
                         <th scope="row">{{ vino.id }}</th>
-                        <td><a >{{ vino.nombre }}</a></td>
+                        <td><a routerLink="/vinos/{{ vino.id }}">{{ vino.nombre }}</a></td>
                         <td>{{ vino.anada }}</td>
                         <td>{{ vino.bodega }}</td>
                         <td>{{ vino.tipo }}</td>

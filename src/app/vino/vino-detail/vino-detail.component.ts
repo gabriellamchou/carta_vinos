@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Vino } from '../vino.model';
+import { VinoService } from '../vino.service';
 
 @Component({
   selector: 'app-vino-detail',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VinoDetailComponent implements OnInit {
 
-  constructor() { }
+  vino!: Vino;
+  id!: number;
+
+  constructor(
+    private vinoService: VinoService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.vino = this.vinoService.getVino(this.id)!;
+      }
+    );
   }
 
 }

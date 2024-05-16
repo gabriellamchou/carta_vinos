@@ -41,5 +41,11 @@ export class VinoService {
     return this.listaVinos;
   }
 
+  getVino(id: number) {
+    return this.listaVinos.find(
+      (vino) => vino.id === id
+    );
+  }
+
   constructor() { }
 }
