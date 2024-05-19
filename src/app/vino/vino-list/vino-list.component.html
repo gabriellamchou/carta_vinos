@@ -24,12 +24,26 @@
                 <tbody>
                     <tr *ngFor="let vino of listaVinos">
                         <th scope="row">{{ vino.id }}</th>
-                        <td><a routerLink="/vinos/{{ vino.id }}">{{ vino.nombre }}</a></td>
+                        <td>
+                            <a 
+                            [routerLink]="['/vinos', vino.id]">
+                                {{ vino.nombre }}
+                            </a>
+                        </td>
                         <td>{{ vino.anada }}</td>
                         <td>{{ vino.bodega }}</td>
                         <td>{{ vino.tipo }}</td>
-                        <td><a><img src="\assets\images\edit_pencil.png"></a></td>
-                        <td><a><img src="\assets\images\delete_bin.png"></a></td>
+                        <td>
+                            <a
+                            [routerLink]="['/vinos', vino.id, 'editar']">
+                                <img src="\assets\images\edit_pencil.png">
+                            </a>
+                        </td>
+                        <td>
+                            <a>
+                                <img src="\assets\images\delete_bin.png">
+                            </a>
+                        </td>
                     </tr>
                 </tbody>
             </table>

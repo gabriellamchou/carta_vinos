@@ -7,6 +7,7 @@ import { VinoNewComponent } from './vino/vino-new/vino-new.component';
 import { VinoDetailComponent } from './vino/vino-detail/vino-detail.component';
 
 const routes: Routes = [
+  { path: '', component: VinoListComponent },
   { path: 'vinos', component: VinoListComponent },
   { path: 'vinos/nuevo', component: VinoNewComponent },
   { path: 'vinos/:id', component: VinoDetailComponent },
