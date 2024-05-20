@@ -9,6 +9,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class VinoEditComponent implements OnInit {
   id!: number;
   editMode: boolean = false;
+  heading = 'Nuevo vino';
 
   constructor(
     private route: ActivatedRoute
@@ -18,8 +19,11 @@ export class VinoEditComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
-          this.editMode = params['id'] != null;
+          if (params['id'] != null) {
+            this.id = +params['id'];
+            this.editMode = true;
+            this.heading = 'Editar vino';
+          }
         }
       )
   }

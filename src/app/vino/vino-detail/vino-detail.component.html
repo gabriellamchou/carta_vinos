@@ -1,13 +1,16 @@
 <div class="row">
     <div class="col-xs-12 title">
-        <h3>{{ vino.nombre }}</h3>
-        <button type="button" class="btn btn-danger">Eliminar</button>
-        <button 
+        <h1 class="mt-5">{{ vino.nombre }}</h1>
+        <div class="mt-5 cockpit">
+            <button type="button" class="btn btn-danger">Eliminar</button>
+            <button 
             type="button" 
             class="btn btn-warning"
             [routerLink]="['/vinos', vino.id, 'editar']">Editar</button>
+        </div>
     </div>
 </div>
+<br><br>
 <div class="row">
     <div class="col-xs-12">
         <h5>Bodega</h5>
