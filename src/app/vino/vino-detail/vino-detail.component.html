@@ -2,7 +2,10 @@
     <div class="col-xs-12 title">
         <h3>{{ vino.nombre }}</h3>
         <button type="button" class="btn btn-danger">Eliminar</button>
-        <button type="button" class="btn btn-warning">Editar</button>
+        <button 
+            type="button" 
+            class="btn btn-warning"
+            [routerLink]="['/vinos', vino.id, 'editar']">Editar</button>
     </div>
 </div>
 <div class="row">

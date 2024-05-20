@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { VinoListComponent } from './vino/vino-list/vino-list.component';
 import { VinoEditComponent } from './vino/vino-edit/vino-edit.component';
-import { VinoNewComponent } from './vino/vino-new/vino-new.component';
 import { VinoDetailComponent } from './vino/vino-detail/vino-detail.component';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { VinoDetailComponent } from './vino/vino-detail/vino-detail.component';
     HeaderComponent,
     VinoListComponent,
     VinoEditComponent,
-    VinoNewComponent,
     VinoDetailComponent
   ],
   imports: [
