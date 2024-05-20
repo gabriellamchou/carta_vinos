@@ -1,3 +1,5 @@
+import { Uva } from "../uva/uva.model";
+
 export class Vino {
     constructor(
         public id: number,
@@ -12,5 +14,6 @@ export class Vino {
         public breveDescripcion: string,
         public capacidad: number | null,
         public stock: number | null,
+        public uvas: Uva[]
     ) { }
 }

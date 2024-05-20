@@ -110,18 +110,47 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12" formArrayName="uvas">
+                    <div 
+                        class="row" 
+                        *ngFor="let uvaCtrl of controls; let i = index"
+                        [formGroupName]="i">
+                        <div class="col-xs-8">
+                            <div class="form-group">
+                                <label for="uva" + i>Uva</label>
+                                <input 
+                                    type="text" 
+                                    id="uva" + i 
+                                    formControlName="nombre"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <label for="porcentaje" + i>Porcentaje</label>
+                                <input 
+                                    type="text" 
+                                    id="porcentaje" + i 
+                                    formControlName="porcentaje"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row cockpit">
                 <div class="col-xs-12">
                     <button 
                         type="submit" 
                         class="btn btn-success">
-                        Save
+                        Guardar
                     </button>
                     <button 
                         type="button" 
                         class="btn btn-danger"
                         (click)="onCancel()">
-                        Cancel
+                        Cancelar
                     </button>
                 </div>
             </div>
