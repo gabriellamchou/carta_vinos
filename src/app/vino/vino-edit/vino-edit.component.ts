@@ -1,9 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { VinoService } from '../vino.service';
+import { Uva } from 'src/app/uva/uva.model';
+import { UvaService } from 'src/app/uva/uva.service';
 
 @Component({
   selector: 'app-vino-edit',
@@ -15,13 +17,15 @@ export class VinoEditComponent implements OnInit {
   editMode: boolean = false;
   heading = 'Nuevo vino';
   vinoForm!: FormGroup;
+  listaUvas!: Uva[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
     private vinoService: VinoService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private uvaService: UvaService
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +40,7 @@ export class VinoEditComponent implements OnInit {
           this.initForm();
         }
       )
+    this.listaUvas = this.uvaService.getListaUvas();
   }
 
   private initForm() {
@@ -49,6 +54,22 @@ export class VinoEditComponent implements OnInit {
     let stock: number | null = null;
     let alergenos: string = "";
     let descripcion: string = "";
+    let vinoUvas = this.fb.array([]);
+
+    this.vinoForm = this.fb.group({
+      'id': new FormControl(this.id),
+      'nombre': new FormControl(nombre),
+      'region': new FormControl(region),
+      'bodega': new FormControl(bodega),
+      'anada': new FormControl(anada),
+      'graduacion': new FormControl(graduacion),
+      'precio': new FormControl(precio),
+      'capacidad': new FormControl(capacidad),
+      'stock': new FormControl(stock),
+      'alergenos': new FormControl(alergenos),
+      'descripcion': new FormControl(descripcion),
+      'uvas': vinoUvas
+    });
 
     if (this.editMode) {
       const vino = this.vinoService.getVino(this.id)!;
@@ -62,9 +83,18 @@ export class VinoEditComponent implements OnInit {
       stock = vino.stock;
       alergenos = vino.alergenos;
       descripcion = vino.breveDescripcion;
+      if (vino['uvas']) {
+        for (const uva of vino.uvas) {
+          const formUvas = this.fb.group({
+            'uva' : [uva.uva.nombre],
+            'porcentaje' : [uva.porcentaje]
+          })
+          this.vinoUvas.push(formUvas);
+        }
+      }
     }
 
-    this.vinoForm = new FormGroup({
+    this.vinoForm = this.fb.group({
       'id': new FormControl(this.id),
       'nombre': new FormControl(nombre),
       'region': new FormControl(region),
@@ -75,7 +105,8 @@ export class VinoEditComponent implements OnInit {
       'capacidad': new FormControl(capacidad),
       'stock': new FormControl(stock),
       'alergenos': new FormControl(alergenos),
-      'descripcion': new FormControl(descripcion)
+      'descripcion': new FormControl(descripcion),
+      'uvas': vinoUvas
     });
   }
 
@@ -85,6 +116,14 @@ export class VinoEditComponent implements OnInit {
 
   onSubmit() {
     console.log(this.vinoForm);
+  }
+
+  get vinoUvas() {
+    return this.vinoForm.controls['uvas'] as FormArray;
+  }
+
+  get controls() {
+    return (<FormArray>this.vinoForm.get('uvas')).controls;
   }
 
 }
