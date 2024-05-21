@@ -8,6 +8,7 @@ import { VinoListComponent } from './vino/vino-list/vino-list.component';
 import { VinoEditComponent } from './vino/vino-edit/vino-edit.component';
 import { VinoDetailComponent } from './vino/vino-detail/vino-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -16,6 +16,9 @@ export class VinoListComponent implements OnInit {
 
   ngOnInit(): void {
     this.listaVinos = this.vinoService.getListaVinos();
+    this.vinoService.pruebaGet().subscribe((response) => {
+      console.log(response);
+    })
   }
 
   onDeleteVino(id: number) {

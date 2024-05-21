@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Vino } from './vino.model';
 import { UvaService } from '../uva/uva.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +26,8 @@ export class VinoService {
       'https://cdn.vinissimus.com/img/unsafe/keep/plain/local:///prfmtgrande/vi/ultsj20_anv800_1662703943.png',
       [
         {
-          'uva' : this.uvaService.getUva(2)!,
-          'porcentaje' : 100
+          'uva': this.uvaService.getUva(2)!,
+          'porcentaje': 100
         }
       ]
     ),
@@ -45,20 +47,28 @@ export class VinoService {
       'https://cdn.vinissimus.com/img/unsafe/keep/plain/local:///prfmtgrande/vi/psiv21m_anv800.png',
       [
         {
-          'uva' : this.uvaService.getUva(3)!,
-          'porcentaje' : 90
+          'uva': this.uvaService.getUva(3)!,
+          'porcentaje': 90
         },
         {
-          'uva' : this.uvaService.getUva(4)!,
-          'porcentaje' : 10
+          'uva': this.uvaService.getUva(4)!,
+          'porcentaje': 10
         }
       ]
     )
   ];
 
   constructor(
-    private uvaService: UvaService
+    private uvaService: UvaService,
+    private http: HttpClient
   ) { }
+
+  pruebaGet() {
+    return this.http
+      .get(
+        `${environment.apiUrl}prueba-get`
+      )
+  }
 
   getListaVinos() {
     return this.listaVinos;
@@ -79,7 +89,7 @@ export class VinoService {
     Object.assign(target, newVino);
   }
 
-  deleteVino(id:number) {
+  deleteVino(id: number) {
     const index = this.listaVinos.indexOf(this.getVino(id)!);
     this.listaVinos.splice(index, 1);
   }
