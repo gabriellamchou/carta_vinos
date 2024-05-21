@@ -34,12 +34,13 @@
                     <td>{{ vino.tipo }}</td>
                     <td>
                         <a
-                        [routerLink]="['/vinos', vino.id, 'editar']">
+                            [routerLink]="['/vinos', vino.id, 'editar']">
                             <img src="\assets\images\edit_pencil.png">
                         </a>
                     </td>
                     <td>
-                        <a>
+                        <a
+                            (click)="onDeleteVino(vino.id)">
                             <img src="\assets\images\delete_bin.png">
                         </a>
                     </td>

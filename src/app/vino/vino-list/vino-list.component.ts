@@ -18,4 +18,8 @@ export class VinoListComponent implements OnInit {
     this.listaVinos = this.vinoService.getListaVinos();
   }
 
+  onDeleteVino(id: number) {
+    this.vinoService.deleteVino(id);
+  }
+
 }

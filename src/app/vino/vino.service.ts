@@ -67,4 +67,18 @@ export class VinoService {
       (vino) => vino.id === id
     );
   }
+
+  addVino(vino: Vino) {
+    this.listaVinos.push(vino);
+  }
+
+  updateVino(id: number, newVino: Vino) {
+    const target = this.getVino(id)!;
+    Object.assign(target, newVino);
+  }
+
+  deleteVino(id:number) {
+    const index = this.listaVinos.indexOf(this.getVino(id)!);
+    this.listaVinos.splice(index, 1);
+  }
 }

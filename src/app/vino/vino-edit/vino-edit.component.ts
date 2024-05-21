@@ -6,6 +6,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { VinoService } from '../vino.service';
 import { Uva } from 'src/app/uva/uva.model';
 import { UvaService } from 'src/app/uva/uva.service';
+import { Vino } from '../vino.model';
 
 @Component({
   selector: 'app-vino-edit',
@@ -46,6 +47,7 @@ export class VinoEditComponent implements OnInit {
   private initForm() {
     let nombre: string = "";
     let region: string = "";
+    let tipo: string = "";
     let bodega: string = "";
     let anada: number | null = null;
     let graduacion: number | null = null;
@@ -60,6 +62,7 @@ export class VinoEditComponent implements OnInit {
       'id': new FormControl(this.id),
       'nombre': new FormControl(nombre),
       'region': new FormControl(region),
+      'tipo': new FormControl(tipo),
       'bodega': new FormControl(bodega),
       'anada': new FormControl(anada),
       'graduacion': new FormControl(graduacion),
@@ -75,6 +78,7 @@ export class VinoEditComponent implements OnInit {
       const vino = this.vinoService.getVino(this.id)!;
       nombre = vino.nombre;
       region = vino.region;
+      tipo = vino.tipo;
       bodega = vino.bodega;
       anada = vino.anada;
       graduacion = vino.graduacion;
@@ -100,6 +104,7 @@ export class VinoEditComponent implements OnInit {
       'id': [this.id, Validators.required],
       'nombre': [nombre, Validators.required],
       'region': [region, Validators.required],
+      'tipo': [tipo, Validators.required],
       'bodega': [bodega, Validators.required],
       'anada': [anada, Validators.required],
       'graduacion': [graduacion, Validators.required],
@@ -117,7 +122,13 @@ export class VinoEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.vinoForm);
+    const newVino = this.vinoForm.value;
+    if (this.editMode) {
+      this.vinoService.updateVino(this.id, newVino);
+    } else {
+      this.vinoService.addVino(newVino);
+    }
+    this.router.navigate(['..'], {relativeTo: this.route});
   }
 
   onAddUva() {

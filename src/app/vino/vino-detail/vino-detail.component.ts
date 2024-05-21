@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Vino } from '../vino.model';
 import { VinoService } from '../vino.service';
@@ -16,7 +16,8 @@ export class VinoDetailComponent implements OnInit {
 
   constructor(
     private vinoService: VinoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +27,11 @@ export class VinoDetailComponent implements OnInit {
         this.vino = this.vinoService.getVino(this.id)!;
       }
     );
+  }
+
+  onDeleteVino() {
+    this.vinoService.deleteVino(this.id);
+    this.router.navigate(['..'], {relativeTo: this.route})
   }
 
 }

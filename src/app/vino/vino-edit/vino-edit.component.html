@@ -14,14 +14,23 @@
                             type="number" 
                             id="id"
                             formControlName="id"
-                            class="form-control">
+                            class="form-control"
+                            [readonly]="editMode">
                 </div>
-                <div class="col-sm-10 form-group">
+                <div class="col-sm-7 form-group">
                     <label for="nombre">Nombre</label>
                     <input 
                         type="text" 
                         id="nombre"
                         formControlName="nombre"
+                        class="form-control">
+                </div>
+                <div class="col-sm-3 form-group">
+                    <label for="tipo">Tipo</label>
+                    <input 
+                        type="text" 
+                        id="tipo"
+                        formControlName="tipo"
                         class="form-control">
                 </div>
             </div>

@@ -2,11 +2,18 @@
     <div class="col-xs-12 title">
         <h1 class="mt-5">{{ vino.nombre }}</h1>
         <div class="mt-5 cockpit">
-            <button type="button" class="btn btn-danger">Eliminar</button>
             <button 
-            type="button" 
-            class="btn btn-warning"
-            [routerLink]="['/vinos', vino.id, 'editar']">Editar</button>
+                type="button" 
+                class="btn btn-danger"
+                (click)="onDeleteVino()">
+                Eliminar
+            </button>
+            <button 
+                type="button" 
+                class="btn btn-warning"
+                [routerLink]="['/vinos', vino.id, 'editar']">
+                Editar
+            </button>
         </div>
     </div>
 </div>
