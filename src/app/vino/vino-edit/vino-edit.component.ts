@@ -92,22 +92,21 @@ export class VinoEditComponent implements OnInit {
           this.vinoUvas.push(formUvas);
         }
       }
+      this.vinoForm = this.fb.group({
+        'id': new FormControl(this.id),
+        'nombre': new FormControl(nombre),
+        'region': new FormControl(region),
+        'bodega': new FormControl(bodega),
+        'anada': new FormControl(anada),
+        'graduacion': new FormControl(graduacion),
+        'precio': new FormControl(precio),
+        'capacidad': new FormControl(capacidad),
+        'stock': new FormControl(stock),
+        'alergenos': new FormControl(alergenos),
+        'descripcion': new FormControl(descripcion),
+        'uvas': vinoUvas
+      });
     }
-
-    this.vinoForm = this.fb.group({
-      'id': new FormControl(this.id),
-      'nombre': new FormControl(nombre),
-      'region': new FormControl(region),
-      'bodega': new FormControl(bodega),
-      'anada': new FormControl(anada),
-      'graduacion': new FormControl(graduacion),
-      'precio': new FormControl(precio),
-      'capacidad': new FormControl(capacidad),
-      'stock': new FormControl(stock),
-      'alergenos': new FormControl(alergenos),
-      'descripcion': new FormControl(descripcion),
-      'uvas': vinoUvas
-    });
   }
 
   onCancel() {
