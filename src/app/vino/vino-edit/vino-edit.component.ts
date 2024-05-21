@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { VinoService } from '../vino.service';
@@ -86,27 +86,30 @@ export class VinoEditComponent implements OnInit {
       if (vino['uvas']) {
         for (const uva of vino.uvas) {
           const formUvas = this.fb.group({
-            'uva' : [uva.uva.nombre],
-            'porcentaje' : [uva.porcentaje]
+            'uva' : [uva.uva, Validators.required],
+            'porcentaje' : [uva.porcentaje, [
+              Validators.required,
+              Validators.pattern(/\b([1-9]|[1-9][0-9]|100)\b/)
+            ]]
           })
           this.vinoUvas.push(formUvas);
         }
       }
-      this.vinoForm = this.fb.group({
-        'id': new FormControl(this.id),
-        'nombre': new FormControl(nombre),
-        'region': new FormControl(region),
-        'bodega': new FormControl(bodega),
-        'anada': new FormControl(anada),
-        'graduacion': new FormControl(graduacion),
-        'precio': new FormControl(precio),
-        'capacidad': new FormControl(capacidad),
-        'stock': new FormControl(stock),
-        'alergenos': new FormControl(alergenos),
-        'descripcion': new FormControl(descripcion),
-        'uvas': vinoUvas
-      });
     }
+    this.vinoForm = this.fb.group({
+      'id': [this.id, Validators.required],
+      'nombre': [nombre, Validators.required],
+      'region': [region, Validators.required],
+      'bodega': [bodega, Validators.required],
+      'anada': [anada, Validators.required],
+      'graduacion': [graduacion, Validators.required],
+      'precio': [precio, Validators.required],
+      'capacidad': capacidad,
+      'stock': stock,
+      'alergenos': alergenos,
+      'descripcion': [descripcion, Validators.required],
+      'uvas': vinoUvas
+    });
   }
 
   onCancel() {
@@ -115,6 +118,18 @@ export class VinoEditComponent implements OnInit {
 
   onSubmit() {
     console.log(this.vinoForm);
+  }
+
+  onAddUva() {
+    (<FormArray>this.vinoForm.get('uvas')).push(
+      this.fb.group({
+        'uva': new FormControl(null, Validators.required),
+        'porcentaje' : new FormControl(null, [
+          Validators.required,
+          Validators.pattern(/\b([1-9]|[1-9][0-9]|100)\b/)
+        ])
+      })
+    )
   }
 
   get vinoUvas() {

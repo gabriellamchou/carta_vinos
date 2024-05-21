@@ -14,3 +14,13 @@ button {
 label {
     font-weight: bold;
 }
+
+input.ng-invalid.ng-dirty,
+select.ng-invalid.ng-dirty {
+    border: 1px solid firebrick;
+}
+
+input.ng-invalid.ng-dirty:focus,
+select.ng-invalid.ng-dirty:focus {
+    box-shadow: 0 0 0 3px rgba(228, 21, 21, 0.4);
+}
