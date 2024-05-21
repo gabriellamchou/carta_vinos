@@ -54,22 +54,6 @@ export class VinoEditComponent implements OnInit {
     let stock: number | null = null;
     let alergenos: string = "";
     let descripcion: string = "";
-    let vinoUvas = this.fb.array([]);
-
-    this.vinoForm = this.fb.group({
-      'id': new FormControl(this.id),
-      'nombre': new FormControl(nombre),
-      'region': new FormControl(region),
-      'bodega': new FormControl(bodega),
-      'anada': new FormControl(anada),
-      'graduacion': new FormControl(graduacion),
-      'precio': new FormControl(precio),
-      'capacidad': new FormControl(capacidad),
-      'stock': new FormControl(stock),
-      'alergenos': new FormControl(alergenos),
-      'descripcion': new FormControl(descripcion),
-      'uvas': vinoUvas
-    });
 
     if (this.editMode) {
       const vino = this.vinoService.getVino(this.id)!;
@@ -83,15 +67,6 @@ export class VinoEditComponent implements OnInit {
       stock = vino.stock;
       alergenos = vino.alergenos;
       descripcion = vino.breveDescripcion;
-      if (vino['uvas']) {
-        for (const uva of vino.uvas) {
-          const formUvas = this.fb.group({
-            'uva' : [uva.uva.nombre],
-            'porcentaje' : [uva.porcentaje]
-          })
-          this.vinoUvas.push(formUvas);
-        }
-      }
     }
 
     this.vinoForm = this.fb.group({
@@ -105,8 +80,7 @@ export class VinoEditComponent implements OnInit {
       'capacidad': new FormControl(capacidad),
       'stock': new FormControl(stock),
       'alergenos': new FormControl(alergenos),
-      'descripcion': new FormControl(descripcion),
-      'uvas': vinoUvas
+      'descripcion': new FormControl(descripcion)
     });
   }
 
