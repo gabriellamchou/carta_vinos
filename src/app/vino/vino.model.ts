@@ -14,6 +14,7 @@ export class Vino {
         public breveDescripcion: string,
         public capacidad: number | null,
         public stock: number | null,
+        public imagen: string,
         public uvas: {
             'uva' : Uva, 
             'porcentaje' : number

@@ -10,3 +10,11 @@
 .title {
     margin-bottom: 5px;
 }
+
+.foto-vino {
+    margin: 20px;
+    float: left;
+}
+.foto-vino img {
+    max-height: 300px;
+}

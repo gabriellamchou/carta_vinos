@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { VinoService } from '../vino.service';
@@ -56,6 +56,7 @@ export class VinoEditComponent implements OnInit {
     let stock: number | null = null;
     let alergenos: string = "";
     let descripcion: string = "";
+    let imagen: string = "";
     let vinoUvas = this.fb.array([]);
 
     this.vinoForm = this.fb.group({
@@ -71,6 +72,7 @@ export class VinoEditComponent implements OnInit {
       'stock': new FormControl(stock),
       'alergenos': new FormControl(alergenos),
       'descripcion': new FormControl(descripcion),
+      'imagen': new FormControl(imagen),
       'uvas': vinoUvas
     });
 
@@ -87,6 +89,7 @@ export class VinoEditComponent implements OnInit {
       stock = vino.stock;
       alergenos = vino.alergenos;
       descripcion = vino.breveDescripcion;
+      imagen = vino.imagen;
       if (vino['uvas']) {
         for (const uva of vino.uvas) {
           const formUvas = this.fb.group({
@@ -111,8 +114,9 @@ export class VinoEditComponent implements OnInit {
       'precio': [precio, Validators.required],
       'capacidad': capacidad,
       'stock': stock,
-      'alergenos': alergenos,
-      'descripcion': [descripcion, Validators.required],
+      'alergenos': [alergenos, Validators.required],
+      'breveDescripcion': [descripcion, Validators.required],
+      'imagen': [imagen, Validators.required],
       'uvas': vinoUvas
     });
   }
@@ -141,6 +145,10 @@ export class VinoEditComponent implements OnInit {
         ])
       })
     )
+  }
+
+  onDeleteUva(index: number) {
+    (<FormArray>this.vinoForm.get('uvas')).removeAt(index);
   }
 
   get vinoUvas() {
