@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { VinoService } from '../vino.service';
@@ -19,6 +19,7 @@ export class VinoEditComponent implements OnInit {
   heading = 'Nuevo vino';
   vinoForm!: FormGroup;
   listaUvas: Uva[] = [];
+  vino!: Vino;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,14 +39,39 @@ export class VinoEditComponent implements OnInit {
             this.editMode = true;
             this.heading = 'Editar vino';
           }
-          this.initForm();
         }
       )
+      
+    this.vinoService.getVino(this.id)
+      .subscribe({
+        next: (vino) => {
+          const responseVino: Vino = new Vino(
+            vino[0]['Id'],
+            vino[0]['Nombre'],
+            vino[0]['Precio'],
+            vino[0]['Region'],
+            vino[0]['Tipo'],
+            vino[0]['Bodega'],
+            vino[0]['Anada'],
+            vino[0]['Alergenos'],
+            vino[0]['Graduacion'],
+            vino[0]['BreveDescripcion'],
+            vino[0]['Capacidad'],
+            vino[0]['Stock'],
+            '',
+            null
+          );
+          this.vino = responseVino;
+          console.log(responseVino);
+        }
+      });
+    
+    this.initForm();
     this.listaUvas = this.uvaService.getListaUvas();
   }
 
   private initForm() {
-    let nombre: string = "";
+    let nombre: string = '';
     let region: string = "";
     let tipo: string = "";
     let bodega: string = "";
@@ -71,27 +97,28 @@ export class VinoEditComponent implements OnInit {
       'capacidad': new FormControl(capacidad),
       'stock': new FormControl(stock),
       'alergenos': new FormControl(alergenos),
-      'descripcion': new FormControl(descripcion),
+      'breveDescripcion': new FormControl(descripcion),
       'imagen': new FormControl(imagen),
       'uvas': vinoUvas
     });
 
     if (this.editMode) {
-      const vino = this.vinoService.getVino(this.id)!;
-      nombre = vino.nombre;
-      region = vino.region;
-      tipo = vino.tipo;
-      bodega = vino.bodega;
-      anada = vino.anada;
-      graduacion = vino.graduacion;
-      precio = vino.precio;
-      capacidad = vino.capacidad;
-      stock = vino.stock;
-      alergenos = vino.alergenos;
-      descripcion = vino.breveDescripcion;
-      imagen = vino.imagen;
-      if (vino['uvas']) {
-        for (const uva of vino.uvas) {
+      console.log(this.vino);
+
+      nombre = this.vino.nombre;
+      region = this.vino.region;
+      tipo = this.vino.tipo;
+      bodega = this.vino.bodega;
+      anada = this.vino.anada;
+      graduacion = this.vino.graduacion;
+      precio = this.vino.precio;
+      capacidad = this.vino.capacidad;
+      stock = this.vino.stock;
+      alergenos = this.vino.alergenos;
+      descripcion = this.vino.breveDescripcion;
+      imagen = this.vino.imagen;
+      if (this.vino['uvas']) {
+        for (const uva of this.vino.uvas) {
           const formUvas = this.fb.group({
             'uva': [uva.uva, Validators.required],
             'porcentaje': [uva.porcentaje, [

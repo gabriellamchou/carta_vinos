@@ -1,10 +1,9 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 import { Vino } from './vino.model';
-import { UvaService } from '../uva/uva.service';
 import { environment } from 'src/environments/environment';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,19 +15,17 @@ export class VinoService {
   private listaVinos: Vino[] = [];
 
   constructor(
-    private uvaService: UvaService,
     private http: HttpClient
   ) { }
 
   vinosGet() {
     return this.http
-      .get<{'lista_vinos': []}>(
+      .get<{ 'lista_vinos': [] }>(
         `${environment.apiUrl}vinos`
       )
       .subscribe({
         next: (response) => {
-          console.log(response);
-          let responseVinos: Vino[] = [];
+          const responseVinos: Vino[] = [];
           for (const vino of response.lista_vinos) {
             responseVinos.push(
               new Vino(
@@ -64,9 +61,26 @@ export class VinoService {
   }
 
   getVino(id: number) {
-    return this.listaVinos.find(
-      (vino) => vino.id === id
-    );
+    return this.http
+      .get<{
+        'Id': number,
+        'Nombre': string,
+        'Precio': number,
+        'Region': string,
+        'Tipo': string,
+        'Bodega': string,
+        'Anada': number,
+        'Alergenos': string,
+        'Graduacion': number,
+        'BreveDescripcion': string,
+        'Capacidad': number | null,
+        'Stock': number | null
+      }[]>(
+        `${environment.apiUrl}vinos/${id}`
+      )
+    // return this.listaVinos.find(
+    //   (vino) => vino.id === id
+    // );
   }
 
   addVino(vino: Vino) {
@@ -79,7 +93,7 @@ export class VinoService {
   }
 
   deleteVino(id: number) {
-    const index = this.listaVinos.indexOf(this.getVino(id)!);
-    this.listaVinos.splice(index, 1);
+    // const index = this.listaVinos.indexOf(this.getVino(id)!);
+    // this.listaVinos.splice(index, 1);
   }
 }

@@ -24,7 +24,7 @@ export class VinoDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.vino = this.vinoService.getVino(this.id)!;
+        // this.vino = this.vinoService.getVino(this.id)!;
       }
     );
   }
