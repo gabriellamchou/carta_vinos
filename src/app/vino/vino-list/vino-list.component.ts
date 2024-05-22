@@ -8,17 +8,25 @@ import { Vino } from '../vino.model';
   styleUrls: ['./vino-list.component.css']
 })
 export class VinoListComponent implements OnInit {
-  listaVinos!: Vino[];
+  listaVinos: Vino[] = [];
 
   constructor(
     private vinoService: VinoService
   ) { }
 
   ngOnInit(): void {
+    // this.listaVinos = this.vinoService.getListaVinos();
+    // this.vinoService.pruebaGet().subscribe((response) => {
+    //   console.log(response);
+    // })
+    this.vinoService.vinosGet();
     this.listaVinos = this.vinoService.getListaVinos();
-    this.vinoService.pruebaGet().subscribe((response) => {
-      console.log(response);
-    })
+    this.vinoService.vinosChanged
+      .subscribe({
+        next: (vinos: Vino[]) => {
+          this.listaVinos = vinos;
+        }
+      })
   }
 
   onDeleteVino(id: number) {

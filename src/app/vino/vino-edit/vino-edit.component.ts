@@ -18,7 +18,7 @@ export class VinoEditComponent implements OnInit {
   editMode: boolean = false;
   heading = 'Nuevo vino';
   vinoForm!: FormGroup;
-  listaUvas!: Uva[];
+  listaUvas: Uva[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -93,8 +93,8 @@ export class VinoEditComponent implements OnInit {
       if (vino['uvas']) {
         for (const uva of vino.uvas) {
           const formUvas = this.fb.group({
-            'uva' : [uva.uva, Validators.required],
-            'porcentaje' : [uva.porcentaje, [
+            'uva': [uva.uva, Validators.required],
+            'porcentaje': [uva.porcentaje, [
               Validators.required,
               Validators.pattern(/\b([1-9]|[1-9][0-9]|100)\b/)
             ]]
@@ -132,14 +132,14 @@ export class VinoEditComponent implements OnInit {
     } else {
       this.vinoService.addVino(newVino);
     }
-    this.router.navigate(['..'], {relativeTo: this.route});
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   onAddUva() {
     (<FormArray>this.vinoForm.get('uvas')).push(
       this.fb.group({
         'uva': new FormControl(null, Validators.required),
-        'porcentaje' : new FormControl(null, [
+        'porcentaje': new FormControl(null, [
           Validators.required,
           Validators.pattern(/\b([1-9]|[1-9][0-9]|100)\b/)
         ])
