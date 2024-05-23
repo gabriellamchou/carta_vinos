@@ -15,10 +15,16 @@ export class VinoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.listaVinos = this.vinoService.getListaVinos();
-    this.vinoService.pruebaGet().subscribe((response) => {
-      console.log(response);
-    })
+    // this.vinoService.pruebaGet().subscribe((response) => {
+    //   console.log(response);
+    // })
+    this.vinoService.findAllVinos();
+    this.vinoService.vinosChanged
+      .subscribe({
+        next: (vinos: Vino[]) => {
+          this.listaVinos = vinos;
+        }
+      })
   }
 
   onDeleteVino(id: number) {

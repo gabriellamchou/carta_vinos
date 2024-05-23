@@ -18,6 +18,6 @@ export class Vino {
         public uvas: {
             'uva' : Uva, 
             'porcentaje' : number
-        }[]
+        }[] | null
     ) { }
 }

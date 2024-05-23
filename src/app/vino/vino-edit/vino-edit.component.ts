@@ -6,7 +6,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { VinoService } from '../vino.service';
 import { Uva } from 'src/app/uva/uva.model';
 import { UvaService } from 'src/app/uva/uva.service';
-import { Vino } from '../vino.model';
 
 @Component({
   selector: 'app-vino-edit',
