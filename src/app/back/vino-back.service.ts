@@ -12,15 +12,17 @@ import { environment } from 'src/environments/environment';
 export class VinoBackService {
 
   constructor(
-    private http: HttpClient,
-    private vinoService: VinoService
+    private http: HttpClient
   ) { }
 
-  vinoSave(vino: Vino): Observable<Vino> {
-    return this.http
+  vinoSave(vino: Vino) {
+    this.http
       .post<Vino>(
-        `${environment.apiUrl}vino`,
+        `${environment.apiUrl}vinos/nuevo`,
         vino
+      )
+      .subscribe(
+        response => console.log(response)
       )
   }
 

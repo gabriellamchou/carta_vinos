@@ -63,19 +63,19 @@ export class VinoEditComponent implements OnInit {
     let vinoUvas = this.fb.array([]);
 
     this.vinoForm = this.fb.group({
-      'id': new FormControl(null),
-      'nombre': new FormControl(nombre),
-      'region': new FormControl(region),
-      'tipo': new FormControl(tipo),
-      'bodega': new FormControl(bodega),
-      'anada': new FormControl(anada),
-      'graduacion': new FormControl(graduacion),
-      'precio': new FormControl(precio),
-      'capacidad': new FormControl(capacidad),
-      'stock': new FormControl(stock),
-      'alergenos': new FormControl(alergenos),
-      'breveDescripcion': new FormControl(descripcion),
-      'imagen': new FormControl(imagen),
+      'id': [null, Validators.required],
+      'nombre': [nombre, Validators.required],
+      'region': [region, Validators.required],
+      'tipo': [tipo, Validators.required],
+      'bodega': [bodega, Validators.required],
+      'anada': [anada, Validators.required],
+      'graduacion': [graduacion, Validators.required],
+      'precio': [precio, Validators.required],
+      'capacidad': capacidad,
+      'stock': stock,
+      'alergenos': [alergenos, Validators.required],
+      'breveDescripcion': [descripcion, Validators.required],
+      'imagen': [imagen, Validators.required],
       'uvas': vinoUvas
     });
 
@@ -171,7 +171,7 @@ export class VinoEditComponent implements OnInit {
     } else {
       this.vinoService.addVino(newVino);
     }
-    this.router.navigate(['..'], { relativeTo: this.route });
+    // this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   onAddUva() {

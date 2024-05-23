@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { Vino } from './vino.model';
 import { UvaService } from '../uva/uva.service';
 import { environment } from 'src/environments/environment';
+import { VinoBackService } from '../back/vino-back.service';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +77,14 @@ export class VinoService {
   }
 
   addVino(vino: Vino) {
-    this.listaVinos.push(vino);
+    // this.listaVinos.push(vino);
+    this.http.post<Vino>(
+      `${environment.apiUrl}vino`,
+        vino
+    )
+    .subscribe(
+      response => console.log(response)
+    )
   }
 
   updateVino(id: number, newVino: Vino) {
