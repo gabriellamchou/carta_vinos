@@ -92,9 +92,14 @@ export class VinoService {
     )
   }
 
-  updateVino(id: number, newVino: Vino) {
-    const target = this.getVino(id)!;
-    Object.assign(target, newVino);
+  updateVino(id: number, modVino: Vino) {
+    this.http.put(
+      `${environment.apiUrl}vinos/${id}/editar`,
+      modVino
+    )
+    .subscribe(
+      response => console.log(response)
+    )
   }
 
   deleteVino(id: number) {

@@ -171,7 +171,7 @@ export class VinoEditComponent implements OnInit {
     } else {
       this.vinoService.addVino(this.vinoForm);
     }
-    // this.router.navigate(['..'], { relativeTo: this.route });
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   onAddUva() {

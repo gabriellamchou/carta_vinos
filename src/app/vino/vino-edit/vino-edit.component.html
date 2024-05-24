@@ -27,29 +27,41 @@
                 </div>
                 <div class="col-sm-3 form-group">
                     <label for="tipo">Tipo</label>
-                    <input 
-                        type="number" 
-                        id="tipo"
+                    <select 
+                        name="tipoSelect" 
                         formControlName="tipo"
+                        id="tipo"
                         class="form-control">
+                        <option value="1">Vino Tinto</option>
+                        <option value="2">Vino Blanco</option>
+                        <option value="3">Vino Rosado</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 form-group">
-                        <label for="region">Región</label>
-                        <input 
-                            type="number" 
-                            id="region"
-                            formControlName="region"
-                            class="form-control">
+                    <label for="region">Región</label>
+                    <select 
+                        name="regionSelect" 
+                        formControlName="region"
+                        id="region"
+                        class="form-control">
+                        <option value="1">Bierzo</option>
+                        <option value="2">Ribera del Duero</option>
+                        <option value="3">Pays d'Oc IGP</option>
+                    </select>
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="bodega">Bodega</label>
-                    <input 
-                        type="number" 
-                        id="bodega"
+                    <select 
+                        name="bodegaSelect" 
                         formControlName="bodega"
+                        id="bodega"
                         class="form-control">
+                        <option value="1">Raúl Pérez Viticultor</option>
+                        <option value="2">Dominio de Pingus</option>
+                        <option value="3">Bodegas Volver</option>
+                    </select>
                 </div>
             </div>
             <div class="row">
