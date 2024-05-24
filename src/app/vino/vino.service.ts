@@ -1,11 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
 import { Vino } from './vino.model';
 import { UvaService } from '../uva/uva.service';
 import { environment } from 'src/environments/environment';
 import { VinoBackService } from '../back/vino-back.service';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -76,11 +77,15 @@ export class VinoService {
     );
   }
 
-  addVino(vino: Vino) {
-    // this.listaVinos.push(vino);
-    this.http.post<Vino>(
-      `${environment.apiUrl}vino`,
-        vino
+  addVino(vinoForm: FormGroup<any>) {
+    const form = new FormData();
+    const formData = vinoForm.value;
+    Object.keys(formData).forEach((key) => {
+      form.append(key, formData[key]);
+    })
+    this.http.post(
+      `${environment.apiUrl}vinos/nuevo`,
+        form
     )
     .subscribe(
       response => console.log(response)

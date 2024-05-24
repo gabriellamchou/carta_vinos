@@ -116,9 +116,9 @@ export class VinoEditComponent implements OnInit {
               null
             );
             nombre = vino.nombre;
-            region = vino.region;
-            tipo = vino.tipo;
-            bodega = vino.bodega;
+            region = vino.region!;
+            tipo = vino.tipo!;
+            bodega = vino.bodega!;
             anada = vino.anada;
             graduacion = vino.graduacion;
             precio = vino.precio;
@@ -126,7 +126,7 @@ export class VinoEditComponent implements OnInit {
             stock = vino.stock;
             alergenos = vino.alergenos;
             descripcion = vino.breveDescripcion;
-            imagen = vino.imagen;
+            imagen = vino.imagen!;
             if (vino['uvas']) {
               for (const uva of vino.uvas) {
                 const formUvas = this.fb.group({
@@ -169,7 +169,7 @@ export class VinoEditComponent implements OnInit {
     if (this.editMode) {
       this.vinoService.updateVino(this.id, newVino);
     } else {
-      this.vinoService.addVino(newVino);
+      this.vinoService.addVino(this.vinoForm);
     }
     // this.router.navigate(['..'], { relativeTo: this.route });
   }
