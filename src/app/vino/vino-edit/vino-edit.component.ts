@@ -49,9 +49,9 @@ export class VinoEditComponent implements OnInit {
 
   private initForm() {
     let nombre: string = "";
-    let region: string = "";
-    let tipo: string = "";
-    let bodega: string = "";
+    let region: number | null;
+    let tipo: number | null;
+    let bodega: number | null;
     let anada: number | null = null;
     let graduacion: number | null = null;
     let precio: number | null = null;
@@ -65,9 +65,9 @@ export class VinoEditComponent implements OnInit {
     this.vinoForm = this.fb.group({
       'id': [null, Validators.required],
       'nombre': [nombre, Validators.required],
-      'region': [region, Validators.required],
-      'tipo': [tipo, Validators.required],
-      'bodega': [bodega, Validators.required],
+      'region': [region!, Validators.required],
+      'tipo': [tipo!, Validators.required],
+      'bodega': [bodega!, Validators.required],
       'anada': [anada, Validators.required],
       'graduacion': [graduacion, Validators.required],
       'precio': [precio, Validators.required],
@@ -85,9 +85,9 @@ export class VinoEditComponent implements OnInit {
         'Id' : number,
         'Nombre' : string,
         'Precio' : number,
-        'Tipo' : string,
-        'Region' : string,
-        'Bodega' : string,
+        'Tipo' : number,
+        'Region' : number,
+        'Bodega' : number,
         'Anada' : number,
         'Alergenos' : string,
         'Graduacion' : number,
