@@ -8,7 +8,7 @@ import { Vino } from '../vino.model';
   styleUrls: ['./vino-list.component.css']
 })
 export class VinoListComponent implements OnInit {
-  listaVinos!: Vino[];
+  listaVinos: Vino[] = [];
 
   constructor(
     private vinoService: VinoService

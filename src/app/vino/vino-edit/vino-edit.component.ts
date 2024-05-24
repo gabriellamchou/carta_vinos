@@ -9,6 +9,7 @@ import { VinoService } from '../vino.service';
 import { Uva } from 'src/app/uva/uva.model';
 import { UvaService } from 'src/app/uva/uva.service';
 import { Vino } from '../vino.model';
+import { Region } from 'src/app/region/region.model';
 
 @Component({
   selector: 'app-vino-edit',
@@ -20,7 +21,8 @@ export class VinoEditComponent implements OnInit {
   editMode: boolean = false;
   heading = 'Nuevo vino';
   vinoForm!: FormGroup;
-  listaUvas!: Uva[];
+  listaUvas: Uva[] = [];
+  listaRegiones: Region[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -49,9 +51,9 @@ export class VinoEditComponent implements OnInit {
 
   private initForm() {
     let nombre: string = "";
-    let region: number | null;
-    let tipo: number | null;
-    let bodega: number | null;
+    let region: number | null = null;
+    let tipo: number | null = null;
+    let bodega: number | null = null;
     let anada: number | null = null;
     let graduacion: number | null = null;
     let precio: number | null = null;
@@ -65,9 +67,9 @@ export class VinoEditComponent implements OnInit {
     this.vinoForm = this.fb.group({
       'id': [null, Validators.required],
       'nombre': [nombre, Validators.required],
-      'region': [region!, Validators.required],
-      'tipo': [tipo!, Validators.required],
-      'bodega': [bodega!, Validators.required],
+      'region': [region, Validators.required],
+      'tipo': [tipo, Validators.required],
+      'bodega': [bodega, Validators.required],
       'anada': [anada, Validators.required],
       'graduacion': [graduacion, Validators.required],
       'precio': [precio, Validators.required],
@@ -78,6 +80,15 @@ export class VinoEditComponent implements OnInit {
       'imagen': [imagen, Validators.required],
       'uvas': vinoUvas
     });
+
+    this.http.get<{'lista_regiones' : Region []}>(
+      `${environment.apiUrl}regiones`
+    )
+    .subscribe(
+      (response) => {
+        this.listaRegiones = response['lista_regiones']
+      }
+    )
 
     if (this.editMode) {
       let vino: Vino;
@@ -171,7 +182,7 @@ export class VinoEditComponent implements OnInit {
     } else {
       this.vinoService.addVino(this.vinoForm);
     }
-    // this.router.navigate(['..'], { relativeTo: this.route });
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   onAddUva() {
