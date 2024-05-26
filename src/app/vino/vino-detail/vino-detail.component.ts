@@ -68,8 +68,17 @@ export class VinoDetailComponent implements OnInit {
   }
 
   onDeleteVino() {
-    this.vinoService.deleteVino(this.id);
-    this.router.navigate(['..'], {relativeTo: this.route})
+    this.http
+      .delete(
+        `${environment.apiUrl}vinos/${this.id}/eliminar`
+      )
+      .subscribe(
+        (response) => {
+          console.log(response);
+          this.vinoService.deleteVino(this.id);
+          this.router.navigate(['..'], {relativeTo: this.route})
+        }
+      )
   }
 
 }
