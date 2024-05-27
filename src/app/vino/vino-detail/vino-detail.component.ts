@@ -32,36 +32,41 @@ export class VinoDetailComponent implements OnInit {
         )
           .subscribe({
             next: (response) => {
+              const vinoRes = response[0];
               this.vino = new Vino(
-                response[0]['Id'],
-                response[0]['Nombre'],
-                response[0]['Precio'],
+                vinoRes['Id'],
+                vinoRes['Nombre'],
+                vinoRes['Precio'],
                 { 
-                  id: response[0]['RegionId'], 
-                  nombre: response[0]['RegionNombre'], 
-                  pais: response[0]['RegionPais'], 
-                  descripcion: response[0]['RegionDescripcion']
+                  id: vinoRes['RegionId'], 
+                  nombre: vinoRes['RegionNombre'], 
+                  pais: vinoRes['RegionPais'], 
+                  descripcion: vinoRes['RegionDescripcion']
                 },
                 { 
-                  id: response[0]['TipoId'], 
-                  nombre: response[0]['TipoNombre'], 
-                  descripcion: response[0]['TipoDescripcion']
+                  id: vinoRes['TipoId'], 
+                  nombre: vinoRes['TipoNombre'], 
+                  descripcion: vinoRes['TipoDescripcion']
                 },
                 { 
-                  id: response[0]['BodegaId'], 
-                  nombre: response[0]['BodegaNombre'], 
-                  descripcion: response[0]['BodegaDescripcion']
+                  id: vinoRes['BodegaId'], 
+                  nombre: vinoRes['BodegaNombre'], 
+                  descripcion: vinoRes['BodegaDescripcion']
                 },
-                response[0]['Anada'],
-                response[0]['Alergenos'],
-                response[0]['Graduacion'],
-                response[0]['BreveDescripcion'],
-                response[0]['Capacidad'],
-                response[0]['Stock'],
-                response[0]['Imagenes'],
+                vinoRes['Anada'],
+                vinoRes['Alergenos'],
+                vinoRes['Graduacion'],
+                vinoRes['BreveDescripcion'],
+                vinoRes['Capacidad'],
+                vinoRes['Stock'],
+                {
+                  imgAnv: vinoRes['Imagenes'][0],
+                  imgRev: vinoRes['Imagenes'][1],
+                  imgDet: vinoRes['Imagenes'][2],
+                },
                 null
               );
-              console.log(response);
+              console.log(vinoRes);
               
             }
         })

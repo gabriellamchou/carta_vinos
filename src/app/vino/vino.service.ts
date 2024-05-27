@@ -30,6 +30,7 @@ export class VinoService {
       .subscribe({
         next: (response) => {
           const responseVinos: Vino[] = [];
+          
           for (const vino of response.lista_vinos) {
             responseVinos.push(
               new Vino(
@@ -53,7 +54,11 @@ export class VinoService {
                 vino['BreveDescripcion'],
                 vino['Capacidad'],
                 vino['Stock'],
-                [],
+                {
+                  imgAnv: '',
+                  imgRev: '',
+                  imgDet: '',
+                },
                 null
               )
             );

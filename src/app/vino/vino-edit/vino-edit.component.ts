@@ -61,7 +61,11 @@ export class VinoEditComponent implements OnInit {
       'stock': null,
       'alergenos': ['', Validators.required],
       'breveDescripcion': ['', Validators.required],
-      'imagenes': [null, Validators.required],
+      'imagenes': this.fb.group({
+        'imgAnv': null,
+        'imgRev': '',
+        'imgDet': ''
+      }),
       'uvas': this.fb.array([])
     });
 
@@ -73,6 +77,7 @@ export class VinoEditComponent implements OnInit {
         .subscribe({
           next: (response) => {
             const vinoRes = response[0];
+            console.log(vinoRes['Imagenes'][0]);
             vino = new Vino(
               vinoRes['Id'],
               vinoRes['Nombre'],
@@ -99,11 +104,14 @@ export class VinoEditComponent implements OnInit {
               vinoRes['BreveDescripcion'],
               vinoRes['Capacidad'],
               vinoRes['Stock'],
-              vinoRes['Imagenes'][0],
+              {
+                imgAnv: vinoRes['Imagenes'][0],
+                imgRev: vinoRes['Imagenes'][1],
+                imgDet: vinoRes['Imagenes'][2],
+              },
               null
             );
-            console.log(vinoRes);
-            
+
             if (vino['uvas']) {
               for (const uva of vino.uvas) {
                 const formUvas = this.fb.group({
@@ -129,7 +137,11 @@ export class VinoEditComponent implements OnInit {
               'stock': vino.stock,
               'alergenos': [vino.alergenos, Validators.required],
               'breveDescripcion': [vino.breveDescripcion, Validators.required],
-              'imagenes': [vino.imagenes, Validators.required],
+              'imagenes': this.fb.group({
+                'imgAnv': [vino.imagenes.imgAnv, Validators.required],
+                'imgRev': [vino.imagenes.imgRev],
+                'imgDet': [vino.imagenes.imgDet]
+              }),
               'uvas': this.vinoUvas
             });
           }
@@ -143,6 +155,8 @@ export class VinoEditComponent implements OnInit {
 
   onSubmit() {
     const newVino = this.vinoForm.value;
+    console.log(newVino);
+
     if (this.editMode) {
       this.vinoService.updateVino(this.id, newVino);
     } else {

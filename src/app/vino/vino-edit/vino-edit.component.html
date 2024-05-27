@@ -119,22 +119,43 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 form-group">
-                        <label for="imagenes">Imagen</label>
-                        <input 
-                            type="text"
-                            id="imagenes"
-                            formControlName="imagenes"
-                            class="form-control"
-                            #imagen>
-                </div>
-            </div>
-            <div class="row img-preview">
-                <div class="col-sm-12">
-                    <div *ngIf="!imagen.value" class="msg-container">
-                        <h3 class="msg-content">Previsualización</h3>
+                <div class="col-xs-12" formGroupName="imagenes">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="imgAnv">Anverso</label>
+                                <input 
+                                    type="text"
+                                    id="imgAnv"
+                                    formControlName="imgAnv"
+                                    class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    <img class="mx-auto d-block" [src]="imagen.value">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="imgRev">Reverso</label>
+                                <input 
+                                    type="text"
+                                    id="imgRev"
+                                    formControlName="imgRev"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="imgDet">Detalle</label>
+                                <input 
+                                    type="text"
+                                    id="imgDet"
+                                    formControlName="imgDet"
+                                    class="form-control">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="row">
