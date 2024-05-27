@@ -9,9 +9,6 @@ import { VinoService } from '../vino.service';
 import { Uva } from 'src/app/uva/uva.model';
 import { UvaService } from 'src/app/uva/uva.service';
 import { Vino } from '../vino.model';
-import { Tipo } from 'src/app/tipo/tipo.model';
-import { Bodega } from 'src/app/bodega/bodega.model';
-import { Region } from 'src/app/region/region.model';
 
 @Component({
   selector: 'app-vino-edit',
@@ -51,35 +48,21 @@ export class VinoEditComponent implements OnInit {
   }
 
   private initForm() {
-    let nombre: string = "";
-    let region: number | null = null;
-    let tipo: number | null = null;
-    let bodega: number | null = null;
-    let anada: number | null = null;
-    let graduacion: number | null = null;
-    let precio: number | null = null;
-    let capacidad: number | null = null;
-    let stock: number | null = null;
-    let alergenos: string = "";
-    let descripcion: string = "";
-    let imagenes: string[] = []
-    let vinoUvas = this.fb.array([]);
-
     this.vinoForm = this.fb.group({
       'id': [null, Validators.required],
-      'nombre': [nombre, Validators.required],
-      'region': [region!, Validators.required],
-      'tipo': [tipo!, Validators.required],
-      'bodega': [bodega!, Validators.required],
-      'anada': [anada, Validators.required],
-      'graduacion': [graduacion, Validators.required],
-      'precio': [precio, Validators.required],
-      'capacidad': capacidad,
-      'stock': stock,
-      'alergenos': [alergenos, Validators.required],
-      'breveDescripcion': [descripcion, Validators.required],
-      'imagen': [imagenes, Validators.required],
-      'uvas': vinoUvas
+      'nombre': ['', Validators.required],
+      'region': [null, Validators.required],
+      'tipo': [null, Validators.required],
+      'bodega': [null, Validators.required],
+      'anada': [null, Validators.required],
+      'graduacion': [null, Validators.required],
+      'precio': [null, Validators.required],
+      'capacidad': null,
+      'stock': null,
+      'alergenos': ['', Validators.required],
+      'breveDescripcion': ['', Validators.required],
+      'imagenes': [null, Validators.required],
+      'uvas': this.fb.array([])
     });
 
     if (this.editMode) {
@@ -89,49 +72,38 @@ export class VinoEditComponent implements OnInit {
       )
         .subscribe({
           next: (response) => {
+            const vinoRes = response[0];
             vino = new Vino(
-              response[0]['Id'],
-              response[0]['Nombre'],
-              response[0]['Precio'],
+              vinoRes['Id'],
+              vinoRes['Nombre'],
+              vinoRes['Precio'],
               {
-                id: response[0]['RegionId'],
-                nombre: response[0]['RegionNombre'],
-                pais: response[0]['RegionPais'],
-                descripcion: response[0]['RegionDescripcion'],
+                id: vinoRes['RegionId'],
+                nombre: vinoRes['RegionNombre'],
+                pais: vinoRes['RegionPais'],
+                descripcion: vinoRes['RegionDescripcion'],
               },
               {
-                id: response[0]['TipoId'],
-                nombre: response[0]['TipoNombre'],
-                descripcion: response[0]['TipoDescripcion'],
+                id: vinoRes['TipoId'],
+                nombre: vinoRes['TipoNombre'],
+                descripcion: vinoRes['TipoDescripcion'],
               },
               {
-                id: response[0]['BodegaId'],
-                nombre: response[0]['BodegaNombre'],
-                descripcion: response[0]['BodegaDescripcion']
+                id: vinoRes['BodegaId'],
+                nombre: vinoRes['BodegaNombre'],
+                descripcion: vinoRes['BodegaDescripcion']
               },
-              response[0]['Anada'],
-              response[0]['Alergenos'],
-              response[0]['Graduacion'],
-              response[0]['BreveDescripcion'],
-              response[0]['Capacidad'],
-              response[0]['Stock'],
-              [],
+              vinoRes['Anada'],
+              vinoRes['Alergenos'],
+              vinoRes['Graduacion'],
+              vinoRes['BreveDescripcion'],
+              vinoRes['Capacidad'],
+              vinoRes['Stock'],
+              vinoRes['Imagenes'][0],
               null
             );
-            console.log(response);
+            console.log(vinoRes);
             
-            nombre = vino.nombre;
-            region = vino.region.id;
-            tipo = vino.tipo.id;
-            bodega = vino.bodega.id;
-            anada = vino.anada;
-            graduacion = vino.graduacion;
-            precio = vino.precio;
-            capacidad = vino.capacidad;
-            stock = vino.stock;
-            alergenos = vino.alergenos;
-            descripcion = vino.breveDescripcion;
-            imagenes = vino.imagenes!;
             if (vino['uvas']) {
               for (const uva of vino.uvas) {
                 const formUvas = this.fb.group({
@@ -146,19 +118,19 @@ export class VinoEditComponent implements OnInit {
             }
             this.vinoForm = this.fb.group({
               'id': [this.id, Validators.required],
-              'nombre': [nombre, Validators.required],
-              'region': [region, Validators.required],
-              'tipo': [tipo, Validators.required],
-              'bodega': [bodega, Validators.required],
-              'anada': [anada, Validators.required],
-              'graduacion': [graduacion, Validators.required],
-              'precio': [precio, Validators.required],
-              'capacidad': capacidad,
-              'stock': stock,
-              'alergenos': [alergenos, Validators.required],
-              'breveDescripcion': [descripcion, Validators.required],
-              'imagen': [imagenes, Validators.required],
-              'uvas': vinoUvas
+              'nombre': [vino.nombre, Validators.required],
+              'region': [vino.region.id, Validators.required],
+              'tipo': [vino.tipo.id, Validators.required],
+              'bodega': [vino.bodega.id, Validators.required],
+              'anada': [vino.anada, Validators.required],
+              'graduacion': [vino.graduacion, Validators.required],
+              'precio': [vino.precio, Validators.required],
+              'capacidad': vino.capacidad,
+              'stock': vino.stock,
+              'alergenos': [vino.alergenos, Validators.required],
+              'breveDescripcion': [vino.breveDescripcion, Validators.required],
+              'imagenes': [vino.imagenes, Validators.required],
+              'uvas': this.vinoUvas
             });
           }
         })
