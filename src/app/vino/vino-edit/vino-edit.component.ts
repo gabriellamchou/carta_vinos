@@ -10,6 +10,8 @@ import { Uva } from 'src/app/uva/uva.model';
 import { UvaService } from 'src/app/uva/uva.service';
 import { Vino } from '../vino.model';
 import { Tipo } from 'src/app/tipo/tipo.model';
+import { Bodega } from 'src/app/bodega/bodega.model';
+import { Region } from 'src/app/region/region.model';
 
 @Component({
   selector: 'app-vino-edit',
@@ -50,9 +52,9 @@ export class VinoEditComponent implements OnInit {
 
   private initForm() {
     let nombre: string = "";
-    let region: number | null;
-    let tipo: Tipo;
-    let bodega: number | null;
+    let region: number | null = null;
+    let tipo: number | null = null;
+    let bodega: number | null = null;
     let anada: number | null = null;
     let graduacion: number | null = null;
     let precio: number | null = null;
@@ -82,20 +84,7 @@ export class VinoEditComponent implements OnInit {
 
     if (this.editMode) {
       let vino: Vino;
-      this.http.get<{
-        'Id' : number,
-        'Nombre' : string,
-        'Precio' : number,
-        'Tipo' : Tipo,
-        'Region' : number,
-        'Bodega' : number,
-        'Anada' : number,
-        'Alergenos' : string,
-        'Graduacion' : number,
-        'BreveDescripcion' : string,
-        'Capacidad' : number,
-        'Stock' : number | null
-      }[]>(
+      this.http.get<any[]>(
         `${environment.apiUrl}vinos/${this.id}`
       )
         .subscribe({
@@ -104,9 +93,22 @@ export class VinoEditComponent implements OnInit {
               response[0]['Id'],
               response[0]['Nombre'],
               response[0]['Precio'],
-              response[0]['Region'],
-              response[0]['Tipo'],
-              response[0]['Bodega'],
+              {
+                id: response[0]['RegionId'],
+                nombre: response[0]['RegionNombre'],
+                pais: response[0]['RegionPais'],
+                descripcion: response[0]['RegionDescripcion'],
+              },
+              {
+                id: response[0]['TipoId'],
+                nombre: response[0]['TipoNombre'],
+                descripcion: response[0]['TipoDescripcion'],
+              },
+              {
+                id: response[0]['BodegaId'],
+                nombre: response[0]['BodegaNombre'],
+                descripcion: response[0]['BodegaDescripcion']
+              },
               response[0]['Anada'],
               response[0]['Alergenos'],
               response[0]['Graduacion'],
@@ -116,10 +118,12 @@ export class VinoEditComponent implements OnInit {
               '',
               null
             );
+            console.log(response);
+            
             nombre = vino.nombre;
-            region = vino.region!;
-            tipo = vino.tipo;
-            bodega = vino.bodega!;
+            region = vino.region.id;
+            tipo = vino.tipo.id;
+            bodega = vino.bodega.id;
             anada = vino.anada;
             graduacion = vino.graduacion;
             precio = vino.precio;
@@ -172,7 +176,8 @@ export class VinoEditComponent implements OnInit {
     } else {
       this.vinoService.addVino(this.vinoForm);
     }
-    this.router.navigate(['..'], { relativeTo: this.route });
+    this.location.back();
+    // this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   onAddUva() {

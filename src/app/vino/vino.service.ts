@@ -42,7 +42,11 @@ export class VinoService {
                   nombre: vino['TipoNombre'], 
                   descripcion: vino['TipoDescripcion']
                 },
-                vino['Bodega'],
+                {
+                  id: vino['BodegaId'],
+                  nombre: vino['BodegaNombre'],
+                  descripcion: vino['BodegaDescripcion']
+                },
                 vino['Anada'],
                 vino['Alergenos'],
                 vino['Graduacion'],

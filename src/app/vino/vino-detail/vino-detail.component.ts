@@ -5,7 +5,6 @@ import { Vino } from '../vino.model';
 import { VinoService } from '../vino.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Tipo } from 'src/app/tipo/tipo.model';
 
 @Component({
   selector: 'app-vino-detail',
@@ -37,13 +36,22 @@ export class VinoDetailComponent implements OnInit {
                 response[0]['Id'],
                 response[0]['Nombre'],
                 response[0]['Precio'],
-                response[0]['Region'],
+                { 
+                  id: response[0]['RegionId'], 
+                  nombre: response[0]['RegionNombre'], 
+                  pais: response[0]['RegionPais'], 
+                  descripcion: response[0]['RegionDescripcion']
+                },
                 { 
                   id: response[0]['TipoId'], 
                   nombre: response[0]['TipoNombre'], 
                   descripcion: response[0]['TipoDescripcion']
                 },
-                response[0]['Bodega'],
+                { 
+                  id: response[0]['BodegaId'], 
+                  nombre: response[0]['BodegaNombre'], 
+                  descripcion: response[0]['BodegaDescripcion']
+                },
                 response[0]['Anada'],
                 response[0]['Alergenos'],
                 response[0]['Graduacion'],
@@ -53,9 +61,6 @@ export class VinoDetailComponent implements OnInit {
                 '',
                 null
               );
-              console.log(this.vino);
-              console.log(response);
-              
             }
         })
       }
