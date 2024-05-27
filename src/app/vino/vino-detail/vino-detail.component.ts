@@ -5,6 +5,7 @@ import { Vino } from '../vino.model';
 import { VinoService } from '../vino.service';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Tipo } from 'src/app/tipo/tipo.model';
 
 @Component({
   selector: 'app-vino-detail',
@@ -27,20 +28,7 @@ export class VinoDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.http.get<{
-          'Id' : number,
-          'Nombre' : string,
-          'Precio' : number,
-          'Tipo' : number,
-          'Region' : number,
-          'Bodega' : number,
-          'Anada' : number,
-          'Alergenos' : string,
-          'Graduacion' : number,
-          'BreveDescripcion' : string,
-          'Capacidad' : number,
-          'Stock' : number | null
-        }[]>(
+        this.http.get<any[]>(
           `${environment.apiUrl}vinos/${this.id}`
         )
           .subscribe({
@@ -50,7 +38,11 @@ export class VinoDetailComponent implements OnInit {
                 response[0]['Nombre'],
                 response[0]['Precio'],
                 response[0]['Region'],
-                response[0]['Tipo'],
+                { 
+                  id: response[0]['TipoId'], 
+                  nombre: response[0]['TipoNombre'], 
+                  descripcion: response[0]['TipoDescripcion']
+                },
                 response[0]['Bodega'],
                 response[0]['Anada'],
                 response[0]['Alergenos'],
@@ -61,6 +53,9 @@ export class VinoDetailComponent implements OnInit {
                 '',
                 null
               );
+              console.log(this.vino);
+              console.log(response);
+              
             }
         })
       }

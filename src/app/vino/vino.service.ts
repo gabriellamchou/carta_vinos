@@ -37,7 +37,11 @@ export class VinoService {
                 vino['Nombre'],
                 vino['Precio'],
                 vino['Region'],
-                vino['Tipo'],
+                { 
+                  id: vino['TipoId'], 
+                  nombre: vino['TipoNombre'], 
+                  descripcion: vino['TipoDescripcion']
+                },
                 vino['Bodega'],
                 vino['Anada'],
                 vino['Alergenos'],

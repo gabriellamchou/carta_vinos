@@ -9,6 +9,7 @@ import { VinoService } from '../vino.service';
 import { Uva } from 'src/app/uva/uva.model';
 import { UvaService } from 'src/app/uva/uva.service';
 import { Vino } from '../vino.model';
+import { Tipo } from 'src/app/tipo/tipo.model';
 
 @Component({
   selector: 'app-vino-edit',
@@ -50,7 +51,7 @@ export class VinoEditComponent implements OnInit {
   private initForm() {
     let nombre: string = "";
     let region: number | null;
-    let tipo: number | null;
+    let tipo: Tipo;
     let bodega: number | null;
     let anada: number | null = null;
     let graduacion: number | null = null;
@@ -85,7 +86,7 @@ export class VinoEditComponent implements OnInit {
         'Id' : number,
         'Nombre' : string,
         'Precio' : number,
-        'Tipo' : number,
+        'Tipo' : Tipo,
         'Region' : number,
         'Bodega' : number,
         'Anada' : number,
@@ -117,7 +118,7 @@ export class VinoEditComponent implements OnInit {
             );
             nombre = vino.nombre;
             region = vino.region!;
-            tipo = vino.tipo!;
+            tipo = vino.tipo;
             bodega = vino.bodega!;
             anada = vino.anada;
             graduacion = vino.graduacion;

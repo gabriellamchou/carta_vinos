@@ -1,3 +1,4 @@
+import { Tipo } from "../tipo/tipo.model";
 import { Uva } from "../uva/uva.model";
 
 export class Vino {
@@ -6,7 +7,7 @@ export class Vino {
         public nombre: string,
         public precio: number | null,
         public region: number | null,
-        public tipo: number | null,
+        public tipo: Tipo,
         public bodega: number | null,
         public anada: number | null,
         public alergenos: string,
