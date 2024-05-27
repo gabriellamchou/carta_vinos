@@ -1,55 +1,57 @@
-<div class="row">
-    <div class="col-xs-12 title">
-        <h1 class="mt-5">{{ vino.nombre }}</h1>
-        <div class="mt-5 cockpit">
-            <button 
-                type="button" 
-                class="btn btn-danger"
-                (click)="onDeleteVino()">
-                Eliminar
-            </button>
-            <button 
-                type="button" 
-                class="btn btn-warning"
-                [routerLink]="['/vinos', vino.id, 'editar']">
-                Editar
-            </button>
+<div *ngIf="vino">
+    <div class="row">
+        <div class="col-xs-12 title">
+            <h1 class="mt-5">{{ vino.nombre }}</h1>
+            <div class="mt-5 cockpit">
+                <button 
+                    type="button" 
+                    class="btn btn-danger"
+                    (click)="onDeleteVino()">
+                    Eliminar
+                </button>
+                <button 
+                    type="button" 
+                    class="btn btn-warning"
+                    [routerLink]="['/vinos', vino.id, 'editar']">
+                    Editar
+                </button>
+            </div>
         </div>
     </div>
-</div>
-<br><br>
-<div class="row foto-vino">
-    <div class="col-sm-4">
-        <img class="img-responsive" [src]="vino.imagen" [alt]="vino.nombre">
+    <br><br>
+    <div class="row foto-vino">
+        <div class="col-sm-4">
+            <img class="img-responsive" [src]="vino.imagen" [alt]="vino.nombre">
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h5>Bodega</h5>
-        <p>{{ vino.bodega }}</p>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Bodega</h5>
+            <p>{{ vino.bodega }}</p>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h5>Región</h5>
-        <p>{{ vino.region }}</p>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Región</h5>
+            <p>{{ vino.region }}</p>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h5>Tipo</h5>
-        <p>{{ vino.tipo }}</p>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Tipo</h5>
+            <p>{{ vino.tipo }}</p>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h5>Precio</h5>
-        <p>{{ vino.precio }} €</p>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Precio</h5>
+            <p>{{ vino.precio }} €</p>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h5>Descripción</h5>
-        <p>{{ vino.breveDescripcion }}</p>
+    <div class="row">
+        <div class="col-xs-12">
+            <h5>Descripción</h5>
+            <p>{{ vino.breveDescripcion }}</p>
+        </div>
     </div>
 </div>
