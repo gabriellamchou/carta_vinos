@@ -53,7 +53,7 @@ export class VinoService {
                 vino['BreveDescripcion'],
                 vino['Capacidad'],
                 vino['Stock'],
-                '',
+                [],
                 null
               )
             );

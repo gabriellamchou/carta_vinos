@@ -58,9 +58,11 @@ export class VinoDetailComponent implements OnInit {
                 response[0]['BreveDescripcion'],
                 response[0]['Capacidad'],
                 response[0]['Stock'],
-                '',
+                response[0]['Imagenes'],
                 null
               );
+              console.log(response);
+              
             }
         })
       }

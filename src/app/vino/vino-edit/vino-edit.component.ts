@@ -62,7 +62,7 @@ export class VinoEditComponent implements OnInit {
     let stock: number | null = null;
     let alergenos: string = "";
     let descripcion: string = "";
-    let imagen: string = "";
+    let imagenes: string[] = []
     let vinoUvas = this.fb.array([]);
 
     this.vinoForm = this.fb.group({
@@ -78,7 +78,7 @@ export class VinoEditComponent implements OnInit {
       'stock': stock,
       'alergenos': [alergenos, Validators.required],
       'breveDescripcion': [descripcion, Validators.required],
-      'imagen': [imagen, Validators.required],
+      'imagen': [imagenes, Validators.required],
       'uvas': vinoUvas
     });
 
@@ -115,7 +115,7 @@ export class VinoEditComponent implements OnInit {
               response[0]['BreveDescripcion'],
               response[0]['Capacidad'],
               response[0]['Stock'],
-              '',
+              [],
               null
             );
             console.log(response);
@@ -131,7 +131,7 @@ export class VinoEditComponent implements OnInit {
             stock = vino.stock;
             alergenos = vino.alergenos;
             descripcion = vino.breveDescripcion;
-            imagen = vino.imagen!;
+            imagenes = vino.imagenes!;
             if (vino['uvas']) {
               for (const uva of vino.uvas) {
                 const formUvas = this.fb.group({
@@ -157,7 +157,7 @@ export class VinoEditComponent implements OnInit {
               'stock': stock,
               'alergenos': [alergenos, Validators.required],
               'breveDescripcion': [descripcion, Validators.required],
-              'imagen': [imagen, Validators.required],
+              'imagen': [imagenes, Validators.required],
               'uvas': vinoUvas
             });
           }
