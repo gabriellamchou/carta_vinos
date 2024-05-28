@@ -23,8 +23,9 @@ export class Vino {
             'imgDet' : string | null
         },
         public uvas: {
-            'uva' : Uva, 
-            'porcentaje' : number
+            'Id': number,
+            'Nombre' : string, 
+            'Porcentaje' : number
         }[] | null
     ) { }
 }

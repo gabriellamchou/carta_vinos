@@ -77,73 +77,48 @@ export class VinoEditComponent implements OnInit {
         .subscribe({
           next: (response) => {
             const vinoRes = response[0];
-            console.log(vinoRes['Imagenes'][0]);
-            vino = new Vino(
-              vinoRes['Id'],
-              vinoRes['Nombre'],
-              vinoRes['Precio'],
-              {
-                id: vinoRes['RegionId'],
-                nombre: vinoRes['RegionNombre'],
-                pais: vinoRes['RegionPais'],
-                descripcion: vinoRes['RegionDescripcion'],
-              },
-              {
-                id: vinoRes['TipoId'],
-                nombre: vinoRes['TipoNombre'],
-                descripcion: vinoRes['TipoDescripcion'],
-              },
-              {
-                id: vinoRes['BodegaId'],
-                nombre: vinoRes['BodegaNombre'],
-                descripcion: vinoRes['BodegaDescripcion']
-              },
-              vinoRes['Anada'],
-              vinoRes['Alergenos'],
-              vinoRes['Graduacion'],
-              vinoRes['BreveDescripcion'],
-              vinoRes['Capacidad'],
-              vinoRes['Stock'],
-              {
-                imgAnv: vinoRes['Imagenes'][0],
-                imgRev: vinoRes['Imagenes'][1],
-                imgDet: vinoRes['Imagenes'][2],
-              },
-              null
-            );
-
-            if (vino['uvas']) {
-              for (const uva of vino.uvas) {
+            const imagenes = {
+              imgAnv: vinoRes['Imagenes'][0],
+              imgRev: vinoRes['Imagenes'][1],
+              imgDet: vinoRes['Imagenes'][2]
+            }
+            while (this.vinoUvas.length !== 0) {
+              this.vinoUvas.removeAt(0);
+            }
+            if (vinoRes['Uvas']) {
+              for (const uva of vinoRes['Uvas']) {
                 const formUvas = this.fb.group({
-                  'uva': [uva.uva, Validators.required],
-                  'porcentaje': [uva.porcentaje, [
+                  'id': [uva.Id, Validators.required],
+                  'porcentaje': [uva.Porcentaje, [
                     Validators.required,
                     Validators.pattern(/\b([1-9]|[1-9][0-9]|100)\b/)
                   ]]
-                })
+                });
                 this.vinoUvas.push(formUvas);
               }
             }
-            this.vinoForm = this.fb.group({
-              'id': [this.id, Validators.required],
-              'nombre': [vino.nombre, Validators.required],
-              'region': [vino.region.id, Validators.required],
-              'tipo': [vino.tipo.id, Validators.required],
-              'bodega': [vino.bodega.id, Validators.required],
-              'anada': [vino.anada, Validators.required],
-              'graduacion': [vino.graduacion, Validators.required],
-              'precio': [vino.precio, Validators.required],
-              'capacidad': vino.capacidad,
-              'stock': vino.stock,
-              'alergenos': [vino.alergenos, Validators.required],
-              'breveDescripcion': [vino.breveDescripcion, Validators.required],
-              'imagenes': this.fb.group({
-                'imgAnv': [vino.imagenes.imgAnv, Validators.required],
-                'imgRev': [vino.imagenes.imgRev],
-                'imgDet': [vino.imagenes.imgDet]
-              }),
-              'uvas': this.vinoUvas
+            this.vinoForm.patchValue({
+              'id': this.id,
+              'nombre': vinoRes['Nombre'],
+              'region': vinoRes['RegionId'],
+              'tipo': vinoRes['TipoId'],
+              'bodega': vinoRes['BodegaId'],
+              'anada': vinoRes['Anada'],
+              'graduacion': vinoRes['Graduacion'],
+              'precio': vinoRes['Precio'],
+              'capacidad': vinoRes['Capacidad'],
+              'stock': vinoRes['Stock'],
+              'alergenos': vinoRes['Alergenos'],
+              'breveDescripcion': vinoRes['BreveDescripcion'],
+              'imagenes': {
+                'imgAnv': imagenes.imgAnv,
+                'imgRev': imagenes.imgRev,
+                'imgDet': imagenes.imgDet
+              }
             });
+          },
+          error: (error) => {
+            console.error('Error al obtener el vino:', error);
           }
         })
     }
