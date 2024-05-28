@@ -30,7 +30,7 @@ export class VinoService {
       .subscribe({
         next: (response) => {
           const responseVinos: Vino[] = [];
-          
+
           for (const vino of response.lista_vinos) {
             responseVinos.push(
               new Vino(
@@ -38,9 +38,9 @@ export class VinoService {
                 vino['Nombre'],
                 vino['Precio'],
                 vino['Region'],
-                { 
-                  id: vino['TipoId'], 
-                  nombre: vino['TipoNombre'], 
+                {
+                  id: vino['TipoId'],
+                  nombre: vino['TipoNombre'],
                   descripcion: vino['TipoDescripcion']
                 },
                 {
@@ -94,15 +94,21 @@ export class VinoService {
     const form = new FormData();
     const formData = vinoForm.value;
     Object.keys(formData).forEach((key) => {
-      form.append(key, formData[key]);
+      if (key !== 'imagenes') {
+        form.append(key, formData[key]);
+      } else {
+        Object.keys(formData[key]).forEach((imgKey) => {
+          form.append(`imagenes[${imgKey}]`, formData[key][imgKey]);
+        });
+      }
     })
     this.http.post(
       `${environment.apiUrl}vinos/nuevo`,
-        form
+      form
     )
-    .subscribe(
-      response => console.log(response)
-    )
+      .subscribe(
+        response => console.log(response)
+      )
   }
 
   updateVino(id: number, modVino: Vino) {
@@ -110,9 +116,9 @@ export class VinoService {
       `${environment.apiUrl}vinos/${id}/editar`,
       modVino
     )
-    .subscribe(
-      response => console.log(response)
-    )
+      .subscribe(
+        response => console.log(response)
+      )
   }
 
   deleteVino(id: number) {
