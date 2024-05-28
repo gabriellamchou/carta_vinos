@@ -94,11 +94,16 @@ export class VinoService {
     const form = new FormData();
     const formData = vinoForm.value;
     Object.keys(formData).forEach((key) => {
-      if (key !== 'imagenes') {
+      if (key !== 'imagenes' && key !== 'uvas') {
         form.append(key, formData[key]);
-      } else {
+      } else if (key === 'imagenes') {
         Object.keys(formData[key]).forEach((imgKey) => {
           form.append(`imagenes[${imgKey}]`, formData[key][imgKey]);
+        });
+      } else if (key === 'uvas') {
+        formData[key].forEach((uva: any, index: number) => {
+          form.append(`uvas[${index}][id]`, uva.id);
+          form.append(`uvas[${index}][porcentaje]`, uva.porcentaje);
         });
       }
     })
@@ -107,7 +112,8 @@ export class VinoService {
       form
     )
       .subscribe(
-        response => console.log(response)
+        response => console.log(response),
+        error => console.error(error)
       )
   }
 

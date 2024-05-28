@@ -138,13 +138,12 @@ export class VinoEditComponent implements OnInit {
       this.vinoService.addVino(this.vinoForm);
     }
     this.location.back();
-    // this.router.navigate(['..'], { relativeTo: this.route });
   }
 
   onAddUva() {
     (<FormArray>this.vinoForm.get('uvas')).push(
       this.fb.group({
-        'uva': new FormControl(null, Validators.required),
+        'id': new FormControl(null, Validators.required),
         'porcentaje': new FormControl(null, [
           Validators.required,
           Validators.pattern(/\b([1-9]|[1-9][0-9]|100)\b/)
