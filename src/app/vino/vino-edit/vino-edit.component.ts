@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 
 import { VinoService } from '../vino.service';
 import { Uva } from 'src/app/uva/uva.model';
 import { UvaService } from 'src/app/uva/uva.service';
-import { Vino } from '../vino.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-vino-edit',
@@ -24,7 +23,6 @@ export class VinoEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private location: Location,
     private vinoService: VinoService,
     private fb: FormBuilder,

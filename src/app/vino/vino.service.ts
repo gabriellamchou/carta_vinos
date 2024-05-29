@@ -106,7 +106,7 @@ export class VinoService {
           form.append(`uvas[${index}][porcentaje]`, uva.porcentaje);
         });
       }
-    })
+    });
     this.http.post(
       `${environment.apiUrl}vinos/nuevo`,
       form
@@ -123,14 +123,16 @@ export class VinoService {
 
     // Añade todos los campos de texto al FormData
     Object.keys(formData).forEach((key) => {
-      if (key !== 'imagenes') {
+      if (key !== 'imagenes' && key !== 'uvas') {
         form.append(key, formData[key]);
-      } else {
-        // Añade las imágenes al FormData
+      } else if (key === 'imagenes') {
         Object.keys(formData[key]).forEach((imgKey) => {
-          if (formData[key][imgKey] instanceof File) {
-            form.append(`imagenes[${imgKey}]`, formData[key][imgKey]);
-          }
+          form.append(`imagenes[${imgKey}]`, formData[key][imgKey]);
+        });
+      } else if (key === 'uvas') {
+        formData[key].forEach((uva: any, index: number) => {
+          form.append(`uvas[${index}][id]`, uva.id);
+          form.append(`uvas[${index}][porcentaje]`, uva.porcentaje);
         });
       }
     });
