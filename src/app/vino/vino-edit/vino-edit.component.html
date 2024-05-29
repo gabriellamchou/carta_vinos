@@ -6,7 +6,7 @@
 <br><br>
 <div class="row">
     <div class="col-xs-12">
-        <form [formGroup]="vinoForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="vinoForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-sm-2 form-group">
                         <label for="id">Id</label>
@@ -125,9 +125,9 @@
                             <div class="form-group">
                                 <label for="imgAnv">Anverso</label>
                                 <input 
-                                    type="text"
+                                    type="file"
                                     id="imgAnv"
-                                    formControlName="imgAnv"
+                                    (change)="onFileChange($event, 'imgAnv')"
                                     class="form-control">
                             </div>
                         </div>
@@ -137,9 +137,9 @@
                             <div class="form-group">
                                 <label for="imgRev">Reverso</label>
                                 <input 
-                                    type="text"
+                                    type="file"
                                     id="imgRev"
-                                    formControlName="imgRev"
+                                    (change)="onFileChange($event, 'imgRev')"
                                     class="form-control">
                             </div>
                         </div>
@@ -149,9 +149,9 @@
                             <div class="form-group">
                                 <label for="imgDet">Detalle</label>
                                 <input 
-                                    type="text"
+                                    type="file"
                                     id="imgDet"
-                                    formControlName="imgDet"
+                                    (change)="onFileChange($event, 'imgDet')"
                                     class="form-control">
                             </div>
                         </div>

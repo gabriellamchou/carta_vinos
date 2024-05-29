@@ -18,9 +18,6 @@ export class VinoListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.vinoService.pruebaGet().subscribe((response) => {
-    //   console.log(response);
-    // })
     this.vinoService.findAllVinos();
     this.vinoService.vinosChanged
       .subscribe({

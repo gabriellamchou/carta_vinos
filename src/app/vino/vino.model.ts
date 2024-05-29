@@ -18,9 +18,9 @@ export class Vino {
         public capacidad: number | null,
         public stock: number | null,
         public imagenes: {
-            'imgAnv' : string | null,
-            'imgRev' : string | null,
-            'imgDet' : string | null
+            'imgAnv' : Blob | null,
+            'imgRev' : Blob | null,
+            'imgDet' : Blob | null
         },
         public uvas: {
             'Id': number,

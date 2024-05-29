@@ -70,13 +70,12 @@ export class VinoEditComponent implements OnInit {
     });
 
     if (this.editMode) {
-      let vino: Vino;
-      this.http.get<any[]>(
+      this.http.get<any>(
         `${environment.apiUrl}vinos/${this.id}`
       )
         .subscribe({
           next: (response) => {
-            const vinoRes = response[0];
+            const vinoRes = response.data;
             const imagenes = {
               imgAnv: vinoRes['Imagenes'][0],
               imgRev: vinoRes['Imagenes'][1],
@@ -124,16 +123,24 @@ export class VinoEditComponent implements OnInit {
     }
   }
 
+  onFileChange(event: any, imageType: string) {
+    const file = event.target.files[0];
+    if (file) {
+      this.vinoForm.patchValue({
+        imagenes: {
+          [imageType]: file
+        }
+      });
+    }
+  }
+
   onCancel() {
     this.location.back();
   }
 
   onSubmit() {
-    const newVino = this.vinoForm.value;
-    console.log(newVino);
-
     if (this.editMode) {
-      this.vinoService.updateVino(this.id, newVino);
+      this.vinoService.updateVino(this.id, this.vinoForm);
     } else {
       this.vinoService.addVino(this.vinoForm);
     }

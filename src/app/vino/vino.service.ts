@@ -55,9 +55,9 @@ export class VinoService {
                 vino['Capacidad'],
                 vino['Stock'],
                 {
-                  imgAnv: '',
-                  imgRev: '',
-                  imgDet: '',
+                  imgAnv: null,
+                  imgRev: null,
+                  imgDet: null,
                 },
                 null
               )
@@ -117,14 +117,30 @@ export class VinoService {
       )
   }
 
-  updateVino(id: number, modVino: Vino) {
-    this.http.put(
+  updateVino(id: number, modVino: FormGroup<any>) {
+    const form = new FormData();
+    const formData = modVino.value;
+
+    // Añade todos los campos de texto al FormData
+    Object.keys(formData).forEach((key) => {
+      if (key !== 'imagenes') {
+        form.append(key, formData[key]);
+      } else {
+        // Añade las imágenes al FormData
+        Object.keys(formData[key]).forEach((imgKey) => {
+          if (formData[key][imgKey] instanceof File) {
+            form.append(`imagenes[${imgKey}]`, formData[key][imgKey]);
+          }
+        });
+      }
+    });
+
+    this.http.post(
       `${environment.apiUrl}vinos/${id}/editar`,
-      modVino
-    )
-      .subscribe(
-        response => console.log(response)
-      )
+      form
+    ).subscribe(
+      response => console.log(response)
+    );
   }
 
   deleteVino(id: number) {

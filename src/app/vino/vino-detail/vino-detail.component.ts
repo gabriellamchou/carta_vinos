@@ -27,12 +27,12 @@ export class VinoDetailComponent implements OnInit {
     this.route.params.subscribe(
       (params: Params) => {
         this.id = +params['id'];
-        this.http.get<any[]>(
+        this.http.get<any>(
           `${environment.apiUrl}vinos/${this.id}`
         )
           .subscribe({
             next: (response) => {
-              const vinoRes = response[0];
+              const vinoRes = response.data;
               this.vino = new Vino(
                 vinoRes['Id'],
                 vinoRes['Nombre'],
@@ -60,14 +60,13 @@ export class VinoDetailComponent implements OnInit {
                 vinoRes['Capacidad'],
                 vinoRes['Stock'],
                 {
-                  imgAnv: vinoRes['Imagenes'][0],
-                  imgRev: vinoRes['Imagenes'][1],
-                  imgDet: vinoRes['Imagenes'][2],
+                  imgAnv: vinoRes['Imagenes'][0] || '',
+                  imgRev: vinoRes['Imagenes'][1] || '',
+                  imgDet: vinoRes['Imagenes'][2] || '',
                 },
                 null
               );
               console.log(vinoRes);
-              
             }
         })
       }
