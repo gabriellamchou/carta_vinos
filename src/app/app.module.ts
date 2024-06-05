@@ -18,6 +18,9 @@ import { TipoDetailComponent } from './tipo/tipo-detail/tipo-detail.component';
 import { RegionListComponent } from './region/region-list/region-list.component';
 import { RegionEditComponent } from './region/region-edit/region-edit.component';
 import { RegionDetailComponent } from './region/region-detail/region-detail.component';
+import { BodegaListComponent } from './bodega/bodega-list/bodega-list.component';
+import { BodegaEditComponent } from './bodega/bodega-edit/bodega-edit.component';
+import { BodegaDetailComponent } from './bodega/bodega-detail/bodega-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { RegionDetailComponent } from './region/region-detail/region-detail.comp
     TipoDetailComponent,
     RegionListComponent,
     RegionEditComponent,
-    RegionDetailComponent
+    RegionDetailComponent,
+    BodegaListComponent,
+    BodegaEditComponent,
+    BodegaDetailComponent
   ],
   imports: [
     BrowserModule,

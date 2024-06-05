@@ -8,6 +8,12 @@ import { VinoService } from '../vino.service';
 import { Uva } from 'src/app/uva/uva.model';
 import { UvaService } from 'src/app/uva/uva.service';
 import { environment } from 'src/environments/environment';
+import { Bodega } from 'src/app/bodega/bodega.model';
+import { BodegaService } from 'src/app/bodega/bodega.service';
+import { Region } from 'src/app/region/region.model';
+import { RegionService } from 'src/app/region/region.service';
+import { Tipo } from 'src/app/tipo/tipo.model';
+import { TipoService } from 'src/app/tipo/tipo.service';
 
 @Component({
   selector: 'app-vino-edit',
@@ -20,14 +26,19 @@ export class VinoEditComponent implements OnInit {
   heading = 'Nuevo vino';
   vinoForm!: FormGroup;
   listaUvas!: Uva[];
+  listaRegiones!: Region[];
+  listaBodegas!: Bodega[];
+  listaTipos!: Tipo[];
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
     private vinoService: VinoService,
-    private fb: FormBuilder,
     private uvaService: UvaService,
-    private http: HttpClient
+    private regionService: RegionService,
+    private bodegaService: BodegaService,
+    private tipoService: TipoService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -42,12 +53,48 @@ export class VinoEditComponent implements OnInit {
           this.initForm();
         }
       )
-    this.listaUvas = this.uvaService.getListaUvas();
+
+    this.uvaService.findAllUvas().subscribe({
+      next: (response) => {
+        this.listaUvas = response.lista_uvas;
+      },
+      error: (err) => {
+        console.error('Error obteniendo uvas: ', err);
+      }
+    });
+
+    this.regionService.findAllRegiones().subscribe({
+      next: (response) => {
+        this.listaRegiones = response.lista_regiones;
+      },
+      error: (err) => {
+        console.error('Error obteniendo regiones: ', err);
+      }
+    });
+
+    this.bodegaService.findAllBodegas().subscribe({
+      next: (response) => {
+        this.listaBodegas = response.lista_bodegas;
+      },
+      error: (err) => {
+        console.error('Error obteniendo bodegas: ', err);
+      }
+    });
+
+    this.tipoService.findAllTipos().subscribe({
+      next: (response) => {
+        this.listaTipos = response.lista_tipos;
+      },
+      error: (err) => {
+        console.error('Error obteniendo tipos: ', err);
+      }
+    });
+
   }
 
   private initForm() {
     this.vinoForm = this.fb.group({
-      'id': [null, Validators.required],
+      'id': [null],
       'nombre': ['', Validators.required],
       'region': [null, Validators.required],
       'tipo': [null, Validators.required],
@@ -60,7 +107,7 @@ export class VinoEditComponent implements OnInit {
       'alergenos': ['', Validators.required],
       'breveDescripcion': ['', Validators.required],
       'imagenes': this.fb.group({
-        'imgAnv': null,
+        'imgAnv': '',
         'imgRev': '',
         'imgDet': ''
       }),
@@ -68,9 +115,7 @@ export class VinoEditComponent implements OnInit {
     });
 
     if (this.editMode) {
-      this.http.get<any>(
-        `${environment.apiUrl}vinos/${this.id}`
-      )
+      this.vinoService.getVino(this.id)
         .subscribe({
           next: (response) => {
             const vinoRes = response.data;
@@ -168,5 +213,4 @@ export class VinoEditComponent implements OnInit {
   get controls() {
     return (<FormArray>this.vinoForm.get('uvas')).controls;
   }
-
 }

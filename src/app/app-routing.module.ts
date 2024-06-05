@@ -13,6 +13,9 @@ import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
 import { RegionDetailComponent } from './region/region-detail/region-detail.component';
 import { RegionEditComponent } from './region/region-edit/region-edit.component';
 import { RegionListComponent } from './region/region-list/region-list.component';
+import { BodegaListComponent } from './bodega/bodega-list/bodega-list.component';
+import { BodegaEditComponent } from './bodega/bodega-edit/bodega-edit.component';
+import { BodegaDetailComponent } from './bodega/bodega-detail/bodega-detail.component';
 
 const routes: Routes = [
   // Vinos
@@ -36,6 +39,11 @@ const routes: Routes = [
   { path: 'regiones/nueva', component: RegionEditComponent },
   { path: 'regiones/:id', component: RegionDetailComponent },
   { path: 'regiones/:id/editar', component: RegionEditComponent },
+  // Bodegas
+  { path: 'bodegas', component: BodegaListComponent },
+  { path: 'bodegas/nueva', component: BodegaEditComponent },
+  { path: 'bodegas/:id', component: BodegaDetailComponent },
+  { path: 'bodegas/:id/editar', component: BodegaEditComponent },
 ];
 
 @NgModule({

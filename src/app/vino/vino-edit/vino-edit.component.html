@@ -1,35 +1,11 @@
-<div class="row">
-    <div class="col-xs-12 title">
-        <h2>{{ heading }}</h2>
-        <div class="cockpit">
-            <div class="col-xs-12">
-                <button 
-                    type="submit" 
-                    form="vinoForm"
-                    class="btn btn-success"
-                    [disabled]="!vinoForm.valid">
-                    Guardar
-                </button>
-                <button 
-                    type="button" 
-                    class="btn btn-danger"
-                    (click)="onCancel()">
-                    Cancelar
-                </button>
-            </div>
-        </div>
-    </div>
+<div class="content-block">
+    <h2>{{ heading }}</h2>
 </div>
-<br><br>
-<div class="row">
+<div class="content-block dx-card">
     <div class="col-xs-12">
-        <form 
-            id="vinoForm"
-            [formGroup]="vinoForm" 
-            (ngSubmit)="onSubmit()" 
-            enctype="multipart/form-data">
+        <form [formGroup]="vinoForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-sm-2 form-group">
+                <div *ngIf="editMode" class="col-sm-2 form-group">
                         <label for="id">Id</label>
                         <input 
                             type="number" 
@@ -38,7 +14,9 @@
                             class="form-control"
                             [readonly]="editMode">
                 </div>
-                <div class="col-sm-7 form-group">
+                <div 
+                    class="form-group"
+                    [ngClass]="editMode ? 'col-sm-7' : 'col-sm-9'">
                     <label for="nombre">Nombre</label>
                     <input 
                         type="text" 
@@ -47,41 +25,41 @@
                         class="form-control">
                 </div>
                 <div class="col-sm-3 form-group">
-                    <label for="tipo">Tipo</label>
+                    <label>Tipo</label>
                     <select 
-                        name="tipoSelect" 
-                        formControlName="tipo"
-                        id="tipo"
+                        type="text" 
+                        id="tipoSelect" 
+                        formControlName="tipo" 
                         class="form-control">
-                        <option value="1">Vino Tinto</option>
-                        <option value="2">Vino Blanco</option>
-                        <option value="3">Vino Rosado</option>
+                    <option 
+                        *ngFor="let tipo of listaTipos" 
+                        [value]="tipo.id">{{ tipo.nombre }}</option>
                     </select>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 form-group">
-                    <label for="region">Región</label>
+                    <label>Región</label>
                     <select 
-                        name="regionSelect" 
-                        formControlName="region"
-                        id="region"
+                        type="text" 
+                        id="regionSelect" 
+                        formControlName="region" 
                         class="form-control">
-                        <option value="1">Bierzo</option>
-                        <option value="2">Ribera del Duero</option>
-                        <option value="3">Pays d'Oc IGP</option>
+                    <option 
+                        *ngFor="let reg of listaRegiones" 
+                        [value]="reg.id">{{ reg.nombre }}</option>
                     </select>
                 </div>
                 <div class="col-sm-6 form-group">
-                    <label for="bodega">Bodega</label>
+                    <label>Bodega</label>
                     <select 
-                        name="bodegaSelect" 
-                        formControlName="bodega"
-                        id="bodega"
+                        type="text" 
+                        id="bodegaSelect" 
+                        formControlName="bodega" 
                         class="form-control">
-                        <option value="1">Raúl Pérez Viticultor</option>
-                        <option value="2">Dominio de Pingus</option>
-                        <option value="3">Bodegas Volver</option>
+                    <option 
+                        *ngFor="let bod of listaBodegas" 
+                        [value]="bod.id">{{ bod.nombre }}</option>
                     </select>
                 </div>
             </div>
@@ -237,15 +215,14 @@
                   <div class="col-sm-12 text-center">
                     <button 
                         type="button" 
-                        class="btn btn-secondary col-sm-4" 
+                        class="btn btn-secondary" 
                         (click)="onAddUva()">
                         Añadir Uva
                     </button>
                   </div>
                 </div>
               </div>
-              <hr>
-            <div class="title cockpit-bottom">
+            <div class="row cockpit">
                 <div class="col-xs-12">
                     <button 
                         type="submit" 
@@ -264,3 +241,4 @@
         </form>
     </div>
 </div>
+

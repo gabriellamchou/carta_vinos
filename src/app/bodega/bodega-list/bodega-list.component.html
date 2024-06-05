@@ -1,0 +1,47 @@
+<div class="title">
+    <h2>Bodegas</h2>
+    <div class="cockpit">
+      <button 
+        routerLink="/bodegas/nueva" 
+        class="btn btn-primary">
+        Nueva bodega</button>
+    </div>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bodega of listaBodegas">
+                    <td><strong>{{ bodega.id }}</strong></td>
+                    <td>
+                        <a 
+                        [routerLink]="['/bodegas', bodega.id]">
+                            {{ bodega.nombre }}
+                        </a>
+                    </td>
+                    <td>
+                        <a
+                            [routerLink]="['/bodegas', bodega.id, 'editar']">
+                            <img src="\assets\images\edit_pencil.png">
+                        </a>
+                    </td>
+                    <td>
+                        <a
+                            (click)="onDeleteUva(bodega.id)">
+                            <img src="\assets\images\delete_bin.png">
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
