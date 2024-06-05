@@ -10,6 +10,9 @@ import { UvaListComponent } from './uva/uva-list/uva-list.component';
 import { TipoDetailComponent } from './tipo/tipo-detail/tipo-detail.component';
 import { TipoEditComponent } from './tipo/tipo-edit/tipo-edit.component';
 import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
+import { RegionDetailComponent } from './region/region-detail/region-detail.component';
+import { RegionEditComponent } from './region/region-edit/region-edit.component';
+import { RegionListComponent } from './region/region-list/region-list.component';
 
 const routes: Routes = [
   // Vinos
@@ -28,6 +31,11 @@ const routes: Routes = [
   { path: 'tipos/nuevo', component: TipoEditComponent },
   { path: 'tipos/:id', component: TipoDetailComponent },
   { path: 'tipos/:id/editar', component: TipoEditComponent },
+  // Regiones
+  { path: 'regiones', component: RegionListComponent },
+  { path: 'regiones/nueva', component: RegionEditComponent },
+  { path: 'regiones/:id', component: RegionDetailComponent },
+  { path: 'regiones/:id/editar', component: RegionEditComponent },
 ];
 
 @NgModule({

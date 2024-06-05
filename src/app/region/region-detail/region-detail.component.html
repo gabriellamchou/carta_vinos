@@ -1,0 +1,33 @@
+<div *ngIf="region">
+    <div class="content-block title">
+        <h2>{{ region.nombre }} ({{ region.pais }})</h2>
+        <div class="cockpit">
+            <button 
+                type="button" 
+                class="btn btn-danger"
+                (click)="onDeleteRegion()">
+                Eliminar
+            </button>
+            <button 
+                type="button" 
+                class="btn btn-primary"
+                [routerLink]="['/regiones', region.id, 'editar']">
+                Editar
+            </button>
+        </div>
+    </div>
+    <div class="details dx-card content-block">
+        <div class="foto-region">
+            <img 
+                class="img-responsive" 
+                src="https://media.istockphoto.com/id/978754758/es/foto/de-vineyard-atardecer.jpg?s=612x612&w=0&k=20&c=uJCnLxlSVCzwfmfdUjMrGTCBP4iRbwYk00o0iCgpKlQ=" 
+                [alt]="region.nombre">
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h5>Descripción</h5>
+                <p>{{ region.descripcion }}</p>
+            </div>
+        </div>
+    </div>
+</div>

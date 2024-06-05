@@ -15,6 +15,9 @@ import { UvaDetailComponent } from './uva/uva-detail/uva-detail.component';
 import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
 import { TipoEditComponent } from './tipo/tipo-edit/tipo-edit.component';
 import { TipoDetailComponent } from './tipo/tipo-detail/tipo-detail.component';
+import { RegionListComponent } from './region/region-list/region-list.component';
+import { RegionEditComponent } from './region/region-edit/region-edit.component';
+import { RegionDetailComponent } from './region/region-detail/region-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { TipoDetailComponent } from './tipo/tipo-detail/tipo-detail.component';
     UvaDetailComponent,
     TipoListComponent,
     TipoEditComponent,
-    TipoDetailComponent
+    TipoDetailComponent,
+    RegionListComponent,
+    RegionEditComponent,
+    RegionDetailComponent
   ],
   imports: [
     BrowserModule,
