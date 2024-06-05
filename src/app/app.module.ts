@@ -21,6 +21,7 @@ import { RegionDetailComponent } from './region/region-detail/region-detail.comp
 import { BodegaListComponent } from './bodega/bodega-list/bodega-list.component';
 import { BodegaEditComponent } from './bodega/bodega-edit/bodega-edit.component';
 import { BodegaDetailComponent } from './bodega/bodega-detail/bodega-detail.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { BodegaDetailComponent } from './bodega/bodega-detail/bodega-detail.comp
     RegionDetailComponent,
     BodegaListComponent,
     BodegaEditComponent,
-    BodegaDetailComponent
+    BodegaDetailComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

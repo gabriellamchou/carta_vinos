@@ -1,0 +1,36 @@
+.button, .switch, .whole {
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    width: 50%;
+}
+
+.btn {
+    min-width: 150px;
+    box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+}
+
+#anchor {
+    cursor: pointer;
+    color: #0d6efd;
+}
+
+label {
+    font-weight: bold;
+}
+
+input.ng-invalid.ng-dirty,
+select.ng-invalid.ng-dirty {
+    border: 1px solid firebrick;
+}
+
+input.ng-invalid.ng-dirty:focus,
+select.ng-invalid.ng-dirty:focus {
+    box-shadow: 0 0 0 3px rgba(228, 21, 21, 0.4);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}

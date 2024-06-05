@@ -16,6 +16,7 @@ import { RegionListComponent } from './region/region-list/region-list.component'
 import { BodegaListComponent } from './bodega/bodega-list/bodega-list.component';
 import { BodegaEditComponent } from './bodega/bodega-edit/bodega-edit.component';
 import { BodegaDetailComponent } from './bodega/bodega-detail/bodega-detail.component';
+import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
   // Vinos
@@ -44,6 +45,8 @@ const routes: Routes = [
   { path: 'bodegas/nueva', component: BodegaEditComponent },
   { path: 'bodegas/:id', component: BodegaDetailComponent },
   { path: 'bodegas/:id/editar', component: BodegaEditComponent },
+  // Auth
+  { path: 'login', component: AuthComponent }
 ];
 
 @NgModule({
