@@ -1,67 +1,83 @@
 import { Injectable } from '@angular/core';
 import { Uva } from './uva.model';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UvaService {
 
-  private listaUvas = [
-    new Uva(
-      1,
-      'Monastrell',
-      'La uva monastrell es la gran tinta del levante español, una uva que adora el sol y consigue progresar con cantidades moderadas de agua.',
-      100,
-      null, 
-      null, 
-      null, 
-      null, 
-      null
-    ),
-    new Uva(
-      2,
-      'Mencía',
-      'La mencía es la uva tinta estrella del noroeste español y la responsable del auge de pequeñas denominaciones de origen como El Bierzo y La Ribeira Sacra.',
-      100,
-      null, 
-      null, 
-      null, 
-      null, 
-      null
-    ),
-    new Uva(
-      3,
-      'Tempranillo',
-      'La tempranillo es la gran uva tinta de España, la variedad en la que se basan los vinos de algunas de las denominaciones españolas de mayor prestigio, como Rioja, Ribera del Duero o Toro. En Toro, es conocida como Tinta de Toro y en Ribera del Duero como Tinta del país o tinto fino.',
-      100,
-      50, 
-      25, 
-      70, 
-      65, 
-      70
-    ),
-    new Uva(
-      4,
-      'Garnacha',
-      'La variedad garnacha (grenache en francés) es una uva tinta cultivada ampliamente en España, Francia, Australia y en los Estados Unidos. Se trata de una planta versátil, capaz de adaptarse a una infinidad de terruños distintos, en los que muestra un perfil diferenciado sin perder en absoluto su esencia.',
-      100,
-      70, 
-      40, 
-      70, 
-      65, 
-      90
-    )
-  ]
+  private listaUvas: Uva[] = [];
+  uvasChanged = new Subject<void>();
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  findAllUvas() {
+    return this.http
+      .get<{ 'lista_uvas': [] }>(
+        `${environment.apiUrl}uvas`
+      )
+      .pipe(
+        tap(response => this.listaUvas = response.lista_uvas)
+      );
+  }
 
   getListaUvas() {
     return this.listaUvas;
   }
 
   getUva(id: number) {
-    return this.listaUvas.find(
-      (uva) => uva.id === id
+    return this.http.get<any>(
+      `${environment.apiUrl}uvas/${id}`
+    );
+  }
+
+  addUva(uvaForm: FormGroup) {
+    const form = new FormData();
+    const formData = uvaForm.value;
+    Object.keys(formData).forEach((key) => {
+      form.append(key, formData[key]);
+    });
+    this.http.post(
+      `${environment.apiUrl}uvas/nueva`,
+      form
     )
+      .subscribe({
+        next: () => { 
+          this.uvasChanged.next();
+        },
+        error: (error) => { console.error(error) }
+      })
+  }
+
+  updateUva(id: number, modUva: FormGroup) {
+    const formData = modUva.value;
+    this.http.put(
+      `${environment.apiUrl}uvas/${id}/editar`,
+      formData
+    ).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.uvasChanged.next();
+      }
+    });
+  }
+
+  deleteUva(id: number) {
+    this.http
+      .delete(
+        `${environment.apiUrl}uvas/${id}/eliminar`
+      )
+      .subscribe({
+        next: () => {
+          this.uvasChanged.next();
+        }
+      });
   }
 }
