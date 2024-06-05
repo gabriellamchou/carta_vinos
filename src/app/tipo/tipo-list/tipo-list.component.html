@@ -1,0 +1,47 @@
+<div class="title">
+    <h2>Tipos</h2>
+    <div class="cockpit">
+      <button 
+        routerLink="/tipos/nuevo" 
+        class="btn btn-primary">
+        Nuevo tipo</button>
+    </div>
+</div>
+<br><br>
+<div class="row">
+<div class="col-xs-12 text-center">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tipo of listaTipos">
+                <td><strong>{{ tipo.id }}</strong></td>
+                <td>
+                    <a 
+                        [routerLink]="['/tipos', tipo.id]">
+                        {{ tipo.nombre }}
+                    </a>
+                </td>
+                <td>
+                    <a
+                        [routerLink]="['/tipos', tipo.id, 'editar']">
+                        <img src="\assets\images\edit_pencil.png">
+                    </a>
+                </td>
+                <td>
+                    <a
+                        (click)="onDeleteTipo(tipo.id)">
+                        <img src="\assets\images\delete_bin.png">
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+  

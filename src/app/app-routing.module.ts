@@ -7,6 +7,9 @@ import { VinoDetailComponent } from './vino/vino-detail/vino-detail.component';
 import { UvaDetailComponent } from './uva/uva-detail/uva-detail.component';
 import { UvaEditComponent } from './uva/uva-edit/uva-edit.component';
 import { UvaListComponent } from './uva/uva-list/uva-list.component';
+import { TipoDetailComponent } from './tipo/tipo-detail/tipo-detail.component';
+import { TipoEditComponent } from './tipo/tipo-edit/tipo-edit.component';
+import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
 
 const routes: Routes = [
   // Vinos
@@ -20,6 +23,11 @@ const routes: Routes = [
   { path: 'uvas/nueva', component: UvaEditComponent },
   { path: 'uvas/:id', component: UvaDetailComponent },
   { path: 'uvas/:id/editar', component: UvaEditComponent },
+  // Tipos
+  { path: 'tipos', component: TipoListComponent },
+  { path: 'tipos/nuevo', component: TipoEditComponent },
+  { path: 'tipos/:id', component: TipoDetailComponent },
+  { path: 'tipos/:id/editar', component: TipoEditComponent },
 ];
 
 @NgModule({

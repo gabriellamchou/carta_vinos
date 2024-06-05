@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { UvaListComponent } from './uva/uva-list/uva-list.component';
 import { UvaEditComponent } from './uva/uva-edit/uva-edit.component';
 import { UvaDetailComponent } from './uva/uva-detail/uva-detail.component';
+import { TipoListComponent } from './tipo/tipo-list/tipo-list.component';
+import { TipoEditComponent } from './tipo/tipo-edit/tipo-edit.component';
+import { TipoDetailComponent } from './tipo/tipo-detail/tipo-detail.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { UvaDetailComponent } from './uva/uva-detail/uva-detail.component';
     VinoDetailComponent,
     UvaListComponent,
     UvaEditComponent,
-    UvaDetailComponent
+    UvaDetailComponent,
+    TipoListComponent,
+    TipoEditComponent,
+    TipoDetailComponent
   ],
   imports: [
     BrowserModule,
