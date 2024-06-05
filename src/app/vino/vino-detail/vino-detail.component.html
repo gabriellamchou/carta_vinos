@@ -1,8 +1,8 @@
 <div *ngIf="vino">
     <div class="row">
         <div class="col-xs-12 title">
-            <h1 class="mt-5">{{ vino.nombre }}</h1>
-            <div class="mt-5 cockpit">
+            <h2>{{ vino.nombre }}</h2>
+            <div class="cockpit">
                 <button 
                     type="button" 
                     class="btn btn-danger"
@@ -11,7 +11,7 @@
                 </button>
                 <button 
                     type="button" 
-                    class="btn btn-warning"
+                    class="btn btn-primary"
                     [routerLink]="['/vinos', vino.id, 'editar']">
                     Editar
                 </button>
