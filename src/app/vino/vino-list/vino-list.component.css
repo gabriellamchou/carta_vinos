@@ -5,3 +5,18 @@ img {
 a {
     cursor: pointer;
 }
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    button {
+        width: 150px;
+    }
+}
+
+tr:hover td,
+tr:hover th {
+    background-color: rgb(241, 241, 241);
+}

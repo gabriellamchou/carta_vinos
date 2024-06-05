@@ -1,12 +1,11 @@
-import { Injectable, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
 
 import { Vino } from './vino.model';
-import { UvaService } from '../uva/uva.service';
 import { environment } from 'src/environments/environment';
-import { VinoBackService } from '../back/vino-back.service';
-import { FormGroup } from '@angular/forms';
+import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,19 +17,17 @@ export class VinoService {
   private listaVinos: Vino[] = []
 
   constructor(
-    private uvaService: UvaService,
     private http: HttpClient
   ) { }
 
   findAllVinos() {
-    return this.http
+    this.http
       .get<{ 'lista_vinos': [] }>(
         `${environment.apiUrl}vinos`
       )
-      .subscribe({
-        next: (response) => {
+      .pipe(
+        map(response => {
           const responseVinos: Vino[] = [];
-
           for (const vino of response.lista_vinos) {
             responseVinos.push(
               new Vino(
@@ -62,32 +59,23 @@ export class VinoService {
                 null
               )
             );
+            this.listaVinos = responseVinos;
           }
-          this.setListaVinos(responseVinos);
-        }
-      })
-  }
-
-  pruebaGet() {
-    return this.http
-      .get(
-        `${environment.apiUrl}prueba-get`
+        })
       )
+      .subscribe(
+        { next: () => this.vinosChanged.next(this.listaVinos)}
+      );
   }
 
   getListaVinos() {
     return this.listaVinos;
   }
 
-  setListaVinos(vinos: Vino[]) {
-    this.listaVinos = vinos;
-    this.vinosChanged.next(this.listaVinos);
-  }
-
   getVino(id: number) {
-    return this.listaVinos.find(
-      (vino) => vino.id === id
-    );
+    return this.http.get<any>(
+      `${environment.apiUrl}vinos/${id}`
+    )
   }
 
   addVino(vinoForm: FormGroup<any>) {
@@ -111,10 +99,12 @@ export class VinoService {
       `${environment.apiUrl}vinos/nuevo`,
       form
     )
-      .subscribe(
-        response => console.log(response),
-        error => console.error(error)
-      )
+      .subscribe({
+        next: () => {  
+          this.findAllVinos();
+        },
+        error: (error) => { console.error(error) }
+      })
   }
 
   updateVino(id: number, modVino: FormGroup<any>) {
@@ -140,13 +130,23 @@ export class VinoService {
     this.http.post(
       `${environment.apiUrl}vinos/${id}/editar`,
       form
-    ).subscribe(
-      response => console.log(response)
-    );
+    )
+    .subscribe({
+      next: () => {
+        this.findAllVinos();
+      }
+    });
   }
 
   deleteVino(id: number) {
-    const index = this.listaVinos.indexOf(this.getVino(id)!);
-    this.listaVinos.splice(index, 1);
+    return this.http
+      .delete(
+        `${environment.apiUrl}vinos/${id}/eliminar`
+      )
+      .subscribe({
+        next: () => {
+          this.findAllVinos();
+        }
+      });
   }
 }

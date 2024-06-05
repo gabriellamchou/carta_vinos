@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { environment } from 'src/environments/environment';
 import { VinoService } from '../vino.service';
 import { Vino } from '../vino.model';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-vino-list',
@@ -21,7 +22,7 @@ export class VinoListComponent implements OnInit {
     this.vinoService.findAllVinos();
     this.vinoService.vinosChanged
       .subscribe({
-        next: (vinos: Vino[]) => {
+        next: (vinos) => {
           this.listaVinos = vinos;
         }
       })
@@ -32,11 +33,9 @@ export class VinoListComponent implements OnInit {
       .delete(
         `${environment.apiUrl}vinos/${id}/eliminar`
       )
-      .subscribe(
-        (response) => {
-          console.log(response);
-          this.vinoService.deleteVino(id);
-        }
+      .subscribe(() => {
+        this.vinoService.deleteVino(id);
+      }
       )
   }
 
