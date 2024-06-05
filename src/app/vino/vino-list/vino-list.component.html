@@ -24,7 +24,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let vino of listaVinos">
-                    <th scope="row">{{ vino.id }}</th>
+                    <td><strong>{{ vino.id }}</strong></td>
                     <td>
                         <a 
                         [routerLink]="['/vinos', vino.id]">

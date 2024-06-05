@@ -16,7 +16,6 @@ a {
     }
 }
 
-tr:hover td,
-tr:hover th {
+tr:hover td {
     background-color: rgb(241, 241, 241);
 }

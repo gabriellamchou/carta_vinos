@@ -2,9 +2,10 @@ button {
     margin-right: 5px;
 }
 
-.cockpit {
+.cockpit-bottom {
     margin-top: 10px;
     margin-bottom: 30px;
+    float: right;
 }
 
 .form-group {
@@ -45,4 +46,14 @@ select.ng-invalid.ng-dirty:focus {
 
 .msg-content {
     color: rgba(147, 147, 147, 0.5);
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    button {
+        width: 150px;
+    }
 }
