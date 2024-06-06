@@ -21,13 +21,13 @@ label {
     font-weight: bold;
 }
 
-input.ng-invalid.ng-dirty,
-select.ng-invalid.ng-dirty {
+input.ng-invalid.ng-dirty.ng-touched,
+select.ng-invalid.ng-dirty.ng-touched {
     border: 1px solid firebrick;
 }
 
-input.ng-invalid.ng-dirty:focus,
-select.ng-invalid.ng-dirty:focus {
+input.ng-invalid.ng-dirty:focus.ng-touched,
+select.ng-invalid.ng-dirty:focus.ng-touched {
     box-shadow: 0 0 0 3px rgba(228, 21, 21, 0.4);
 }
 
