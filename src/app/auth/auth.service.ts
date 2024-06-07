@@ -49,4 +49,14 @@ export class AuthService {
             )
     }
 
+    login(email: string, password: string) {
+        this.http.post(
+            `${environment.authUrl}login`,
+            {
+                email: email,
+                password: password
+            }
+        )
+    }
+
 }
