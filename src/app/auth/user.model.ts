@@ -1,10 +1,5 @@
-enum roles {
-    USUARIO,
-    ADMIN
-}
-
 export class User {
     id!: number;
+    username!: string;
     email!: string;
-    rol!: roles;
 }

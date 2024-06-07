@@ -23,6 +23,7 @@ import { BodegaEditComponent } from './bodega/bodega-edit/bodega-edit.component'
 import { BodegaDetailComponent } from './bodega/bodega-detail/bodega-detail.component';
 import { AuthComponent } from './auth/auth.component';
 import { HomeComponent } from './home/home.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { HomeComponent } from './home/home.component';
     BodegaEditComponent,
     BodegaDetailComponent,
     AuthComponent,
-    HomeComponent
+    HomeComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

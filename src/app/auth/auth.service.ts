@@ -23,4 +23,20 @@ export class AuthService {
         )
     }
 
+    registro(email: string, username: string, password: string) {
+        return this.http.post<{
+            id: number,
+            username: string,
+            email: string,
+            rol: string
+        }>(
+            `${environment.authUrl}registro`,
+            {
+                email: email,
+                username: username,
+                password: password
+            }
+        )
+    }
+
 }

@@ -11,6 +11,8 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit {
 
   loginMode = true;
+  isLoading = false;
+  errorMsg: string | null = null;
 
   listaUsuarios: User[] = [];
 
@@ -24,8 +26,30 @@ export class AuthComponent implements OnInit {
     this.loginMode = !this.loginMode;
   }
 
-  onSubmit (form: NgForm) {
-    console.log(form.value);
+  onSubmit(form: NgForm) {
+    this.isLoading = true;
+    if (!form.valid) {
+      return;
+    }
+    if (!this.loginMode) {
+      this.authService.registro(
+        form.value.email,
+        form.value.username,
+        form.value.password)
+        .subscribe({
+          next: (response) => {
+            console.log(response);
+            this.isLoading = false;
+          },
+          error: (error) => {
+            this.errorMsg = "Se ha producido un error";
+            if (error.status === 400) {
+              console.log('Error 400');
+            }
+            this.isLoading = false;
+          }
+        });
+    }
   }
 
   fetchUsers() {
@@ -34,7 +58,7 @@ export class AuthComponent implements OnInit {
         next: (response) => {
           this.listaUsuarios = response;
           console.log(response);
-          
+
         },
         error: (error) => {
           console.log(error);

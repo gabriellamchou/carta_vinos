@@ -1,4 +1,6 @@
-.button, .switch, .whole {
+.button,
+.switch,
+.whole {
     display: flex;
     justify-content: center;
 }
@@ -33,4 +35,12 @@ select.ng-invalid.ng-dirty:focus.ng-touched {
 
 .form-group {
     margin-bottom: 15px;
+}
+
+.spinner {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }

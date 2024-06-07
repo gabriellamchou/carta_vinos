@@ -3,7 +3,13 @@
 </div>
 <div class="row whole">
     <div class="col-sm-12 form">
-        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+        <div class="alert alert-danger" *ngIf="errorMsg">
+            <strong>Error: </strong>{{ errorMsg }}
+        </div>
+        <div class="spinner" *ngIf="isLoading">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
             <div class="row">
                 <div class="form-group">
                     <label for="email">Correo Electrónico</label>
