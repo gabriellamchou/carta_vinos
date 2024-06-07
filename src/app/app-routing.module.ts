@@ -17,10 +17,13 @@ import { BodegaListComponent } from './bodega/bodega-list/bodega-list.component'
 import { BodegaEditComponent } from './bodega/bodega-edit/bodega-edit.component';
 import { BodegaDetailComponent } from './bodega/bodega-detail/bodega-detail.component';
 import { AuthComponent } from './auth/auth.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
+  // Home
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   // Vinos
-  { path: '', component: VinoListComponent },
   { path: 'vinos', component: VinoListComponent },
   { path: 'vinos/nuevo', component: VinoEditComponent },
   { path: 'vinos/:id', component: VinoDetailComponent },
@@ -46,7 +49,9 @@ const routes: Routes = [
   { path: 'bodegas/:id', component: BodegaDetailComponent },
   { path: 'bodegas/:id/editar', component: BodegaEditComponent },
   // Auth
-  { path: 'login', component: AuthComponent }
+  { path: 'auth', component: AuthComponent },
+  // Otros
+  { path: '**', redirectTo: '/vinos' }
 ];
 
 @NgModule({

@@ -22,6 +22,7 @@ import { BodegaListComponent } from './bodega/bodega-list/bodega-list.component'
 import { BodegaEditComponent } from './bodega/bodega-edit/bodega-edit.component';
 import { BodegaDetailComponent } from './bodega/bodega-detail/bodega-detail.component';
 import { AuthComponent } from './auth/auth.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AuthComponent } from './auth/auth.component';
     BodegaListComponent,
     BodegaEditComponent,
     BodegaDetailComponent,
-    AuthComponent
+    AuthComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

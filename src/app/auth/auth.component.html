@@ -17,6 +17,20 @@
                         email>
                 </div>
             </div>
+            <div class="row"  *ngIf="!loginMode">
+                <div class="form-group">
+                    <label for="username">Nombre de usuario</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        class="form-control"
+                        ngModel
+                        name="username"
+                        required
+                        minlength="3"
+                        maxlength="10">
+                </div>
+            </div>
             <div class="row">
                 <div class="form-group">
                     <label for="pass">Contraseña</label>
