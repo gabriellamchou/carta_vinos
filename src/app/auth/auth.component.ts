@@ -31,12 +31,27 @@ export class AuthComponent implements OnInit {
     if (!form.valid) {
       return;
     }
-    if (!this.loginMode) {
+    if (this.loginMode) {
+      this.authService.login(
+        form.value.email,
+        form.value.password
+      ).subscribe({
+        next: (response) => {
+          console.log(response);
+          this.isLoading = false;
+        },
+        error: (errorMsg) => {
+          console.log(errorMsg);
+          this.errorMsg = errorMsg;
+          this.isLoading = false;
+        }
+      });
+    } else {
       this.authService.registro(
         form.value.email,
         form.value.username,
-        form.value.password)
-        .subscribe({
+        form.value.password
+      ).subscribe({
           next: (response) => {
             console.log(response);
             this.isLoading = false;

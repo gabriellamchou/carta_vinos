@@ -50,13 +50,24 @@ export class AuthService {
     }
 
     login(email: string, password: string) {
-        this.http.post(
+        return this.http.post(
             `${environment.authUrl}login`,
             {
                 email: email,
                 password: password
             }
         )
+            .pipe(
+                catchError(errorRes => {
+                    console.log(errorRes);
+                    
+                    let errorMsg = 'Se ha producido un error desconocido';
+                    if (errorRes.status === 400) {
+                        errorMsg = "Credenciales erróneas";
+                    }
+                    return throwError(errorMsg);
+                })
+            )
     }
 
 }
