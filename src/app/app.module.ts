@@ -25,6 +25,7 @@ import { VinoDetailComponent } from './pages/vinos/vino-detail/vino-detail.compo
 import { VinoEditComponent } from './pages/vinos/vino-edit/vino-edit.component';
 import { VinoListComponent } from './pages/vinos/vino-list/vino-list.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { NavComponent } from './shared/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     AuthComponent,
     HomeComponent,
     LoadingSpinnerComponent,
-    FooterComponent
+    FooterComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
