@@ -1,7 +1,6 @@
-import { Bodega } from "../bodega/bodega.model";
-import { Region } from "../region/region.model";
-import { Tipo } from "../tipo/tipo.model";
-import { Uva } from "../uva/uva.model";
+import { Bodega } from "../bodegas/bodega.model"
+import { Region } from "../regiones/region.model"
+import { Tipo } from "../tipos/tipo.model"
 
 export class Vino {
     constructor(

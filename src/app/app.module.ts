@@ -24,6 +24,7 @@ import { UvaListComponent } from './pages/uvas/uva-list/uva-list.component';
 import { VinoDetailComponent } from './pages/vinos/vino-detail/vino-detail.component';
 import { VinoEditComponent } from './pages/vinos/vino-edit/vino-edit.component';
 import { VinoListComponent } from './pages/vinos/vino-list/vino-list.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { VinoListComponent } from './pages/vinos/vino-list/vino-list.component';
     BodegaDetailComponent,
     AuthComponent,
     HomeComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

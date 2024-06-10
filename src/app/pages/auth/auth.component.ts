@@ -49,8 +49,8 @@ export class AuthComponent implements OnInit {
       });
     } else {
       this.authService.registro(
-        form.value.email,
         form.value.username,
+        form.value.email,
         form.value.password
       ).subscribe({
           next: (response) => {
@@ -72,7 +72,6 @@ export class AuthComponent implements OnInit {
         next: (response) => {
           this.listaUsuarios = response;
           console.log(response);
-
         },
         error: (error) => {
           console.log(error);
