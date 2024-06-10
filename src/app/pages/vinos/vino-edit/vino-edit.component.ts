@@ -1,19 +1,17 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Params } from '@angular/router';
 
 import { VinoService } from '../vino.service';
-import { Uva } from 'src/app/uva/uva.model';
-import { UvaService } from 'src/app/uva/uva.service';
-import { environment } from 'src/environments/environment';
-import { Bodega } from 'src/app/bodega/bodega.model';
-import { BodegaService } from 'src/app/bodega/bodega.service';
-import { Region } from 'src/app/region/region.model';
-import { RegionService } from 'src/app/region/region.service';
-import { Tipo } from 'src/app/tipo/tipo.model';
-import { TipoService } from 'src/app/tipo/tipo.service';
+import { Bodega } from '../../bodegas/bodega.model';
+import { BodegaService } from '../../bodegas/bodega.service';
+import { Region } from '../../regiones/region.model';
+import { RegionService } from '../../regiones/region.service';
+import { Tipo } from '../../tipos/tipo.model';
+import { TipoService } from '../../tipos/tipo.service';
+import { Uva } from '../../uvas/uva.model';
+import { UvaService } from '../../uvas/uva.service';
 
 @Component({
   selector: 'app-vino-edit',
