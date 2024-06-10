@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { User } from './user.model';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,10 @@ export class AuthComponent implements OnInit {
 
   listaUsuarios: User[] = [];
 
-  constructor(private authService: AuthService) { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.fetchUsers();
@@ -42,9 +46,12 @@ export class AuthComponent implements OnInit {
           this.isLoading = false;
         },
         error: (errorMsg) => {
-          console.log(errorMsg);
+          console.error(errorMsg);
           this.errorMsg = errorMsg;
           this.isLoading = false;
+        },
+        complete: () => {
+          this.router.navigate(["home"])
         }
       });
     } else {
