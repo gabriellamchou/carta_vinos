@@ -1,14 +1,19 @@
-<header class="navbar navbar-dark bg-dark">
+<header class="navbar navbar-dark">
     <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand" routerLink="/home">Bacchus</a>
+        <a class="navbar-brand" routerLink="/home">
+            <h1 class="brand">Bacchus</h1>
+        </a>
         <a 
             *ngIf="!isLoggedIn"
             class="btn btn-outline-light" 
-            routerLink="/auth">Iniciar sesión</a>
+            routerLink="/auth">
+            <img class="userIcon" src="\assets\icons\user.png">
+            Iniciar Sesión
+        </a>
         <a 
             *ngIf="isLoggedIn"
             class="btn btn-outline-light"
             (click)="onLogOut()" 
-            routerLink="/auth">Cerrar sesión</a>
+            routerLink="/auth">Cerrar Sesión</a>
     </div>
 </header>

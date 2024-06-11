@@ -44,3 +44,9 @@ select.ng-invalid.ng-dirty:focus.ng-touched {
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+
+.btn-primary-custom {
+    background-color: #94315D;
+    color: white;
+    border: 0;
+}

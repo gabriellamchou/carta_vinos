@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #F6EEE8;
+}
+
+button.btn-primary-custom:hover {
+    background-color: #A33667;
+}
+
+@font-face {
+    font-family: 'Roman SD';
+    src: url('assets/fonts/Roman SD.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

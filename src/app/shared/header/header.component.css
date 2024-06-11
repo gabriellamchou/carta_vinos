@@ -1,0 +1,16 @@
+header {
+    background-color: #31042C;
+}
+
+.brand {
+    font-family: "Roman SD";
+    margin-top: 10px;
+    background:linear-gradient(to right, #BF953F, #cfc76a, #B38728);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.userIcon {
+    height: 22px;
+    margin-right: 5px;
+}

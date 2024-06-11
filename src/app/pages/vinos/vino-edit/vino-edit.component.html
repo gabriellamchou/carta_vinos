@@ -1,244 +1,245 @@
-<div class="content-block">
-    <h2>{{ heading }}</h2>
-</div>
-<div class="content-block dx-card">
-    <div class="col-xs-12">
-        <form [formGroup]="vinoForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-            <div class="row">
-                <div *ngIf="editMode" class="col-sm-2 form-group">
-                        <label for="id">Id</label>
-                        <input 
-                            type="number" 
-                            id="id"
-                            formControlName="id"
-                            class="form-control"
-                            [readonly]="editMode">
-                </div>
-                <div 
-                    class="form-group"
-                    [ngClass]="editMode ? 'col-sm-7' : 'col-sm-9'">
-                    <label for="nombre">Nombre</label>
-                    <input 
-                        type="text" 
-                        id="nombre"
-                        formControlName="nombre"
-                        class="form-control">
-                </div>
-                <div class="col-sm-3 form-group">
-                    <label>Tipo</label>
-                    <select 
-                        type="text" 
-                        id="tipoSelect" 
-                        formControlName="tipo" 
-                        class="form-control">
-                    <option 
-                        *ngFor="let tipo of listaTipos" 
-                        [value]="tipo.id">{{ tipo.nombre }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                    <label>Región</label>
-                    <select 
-                        type="text" 
-                        id="regionSelect" 
-                        formControlName="region" 
-                        class="form-control">
-                    <option 
-                        *ngFor="let reg of listaRegiones" 
-                        [value]="reg.id">{{ reg.nombre }}</option>
-                    </select>
-                </div>
-                <div class="col-sm-6 form-group">
-                    <label>Bodega</label>
-                    <select 
-                        type="text" 
-                        id="bodegaSelect" 
-                        formControlName="bodega" 
-                        class="form-control">
-                    <option 
-                        *ngFor="let bod of listaBodegas" 
-                        [value]="bod.id">{{ bod.nombre }}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 form-group">
-                        <label for="anada">Añada</label>
-                        <input 
-                            type="number" 
-                            id="anada"
-                            formControlName="anada"
-                            class="form-control">
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label for="graduacion">Graduación</label>
-                    <input 
-                        type="number" 
-                        id="graduacion"
-                        formControlName="graduacion"
-                        class="form-control">
-                </div>
-                <div class="col-sm-4 form-group">
-                    <label for="precio">Precio</label>
-                    <input 
-                        type="number" 
-                        id="precio"
-                        formControlName="precio"
-                        class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6 form-group">
-                        <label for="capacidad">Capacidad</label>
-                        <input 
-                            type="number" 
-                            id="capacidad"
-                            formControlName="capacidad"
-                            class="form-control">
-                </div>
-                <div class="col-sm-6 form-group">
-                    <label for="stock">Stock</label>
-                    <input 
-                        type="number" 
-                        id="stock"
-                        formControlName="stock"
-                        class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                        <label for="alergenos">Alergenos</label>
+<div class="container">
+    <div class="content-block">
+        <h2>{{ heading }}</h2>
+    </div>
+    <div class="content-block dx-card">
+        <div class="col-xs-12">
+            <form [formGroup]="vinoForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                <div class="row">
+                    <div *ngIf="editMode" class="col-sm-2 form-group">
+                            <label for="id">Id</label>
+                            <input 
+                                type="number" 
+                                id="id"
+                                formControlName="id"
+                                class="form-control"
+                                [readonly]="editMode">
+                    </div>
+                    <div 
+                        class="form-group"
+                        [ngClass]="editMode ? 'col-sm-7' : 'col-sm-9'">
+                        <label for="nombre">Nombre</label>
                         <input 
                             type="text" 
-                            id="alergenos"
-                            formControlName="alergenos"
+                            id="nombre"
+                            formControlName="nombre"
                             class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12" formGroupName="imagenes">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="imgAnv">Anverso</label>
-                                <input 
-                                    type="file"
-                                    id="imgAnv"
-                                    (change)="onFileChange($event, 'imgAnv')"
-                                    class="form-control">
-                            </div>
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="imgRev">Reverso</label>
-                                <input 
-                                    type="file"
-                                    id="imgRev"
-                                    (change)="onFileChange($event, 'imgRev')"
-                                    class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="imgDet">Detalle</label>
-                                <input 
-                                    type="file"
-                                    id="imgDet"
-                                    (change)="onFileChange($event, 'imgDet')"
-                                    class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="form-group">
-                        <label for="description">Descripción</label>
-                        <textarea 
-                            type="text" 
-                            id="description" 
-                            formControlName="breveDescripcion"
-                            class="form-control"
-                            rows="6"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12" formArrayName="uvas">
-                  <div 
-                    class="row" 
-                    *ngFor="let uvaCtrl of vinoUvas.controls; 
-                    let i = index" [formGroupName]="i">
-                    <div class="col-sm-9">
-                      <div class="form-group">
-                        <label [for]="'id' + i">Uva</label>
+                    <div class="col-sm-3 form-group">
+                        <label>Tipo</label>
                         <select 
                             type="text" 
-                            [id]="'id' + i" 
-                            formControlName="id" 
+                            id="tipoSelect" 
+                            formControlName="tipo" 
                             class="form-control">
-                          <option 
-                            *ngFor="let uva of listaUvas" 
-                            [value]="uva.id">{{ uva.nombre }}</option>
+                        <option 
+                            *ngFor="let tipo of listaTipos" 
+                            [value]="tipo.id">{{ tipo.nombre }}</option>
                         </select>
-                      </div>
                     </div>
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                        <label [for]="'porcentaje' + i">Porcentaje</label>
-                        <input 
-                            type="number" 
-                            [id]="'porcentaje' + i" 
-                            formControlName="porcentaje" 
-                            class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-sm-1">
-                        <label></label>
-                        <button 
-                            type="button" 
-                            class="btn btn-danger form-control" 
-                            (click)="onDeleteUva(i)">
-                            X
-                        </button>
-                    </div>
-                  </div>
                 </div>
                 <div class="row">
-                  <div class="col-sm-12 text-center">
-                    <button 
-                        type="button" 
-                        class="btn btn-secondary" 
-                        (click)="onAddUva()">
-                        Añadir Uva
-                    </button>
+                    <div class="col-sm-6 form-group">
+                        <label>Región</label>
+                        <select 
+                            type="text" 
+                            id="regionSelect" 
+                            formControlName="region" 
+                            class="form-control">
+                        <option 
+                            *ngFor="let reg of listaRegiones" 
+                            [value]="reg.id">{{ reg.nombre }}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label>Bodega</label>
+                        <select 
+                            type="text" 
+                            id="bodegaSelect" 
+                            formControlName="bodega" 
+                            class="form-control">
+                        <option 
+                            *ngFor="let bod of listaBodegas" 
+                            [value]="bod.id">{{ bod.nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                            <label for="anada">Añada</label>
+                            <input 
+                                type="number" 
+                                id="anada"
+                                formControlName="anada"
+                                class="form-control">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="graduacion">Graduación</label>
+                        <input 
+                            type="number" 
+                            id="graduacion"
+                            formControlName="graduacion"
+                            class="form-control">
+                    </div>
+                    <div class="col-sm-4 form-group">
+                        <label for="precio">Precio</label>
+                        <input 
+                            type="number" 
+                            id="precio"
+                            formControlName="precio"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                            <label for="capacidad">Capacidad</label>
+                            <input 
+                                type="number" 
+                                id="capacidad"
+                                formControlName="capacidad"
+                                class="form-control">
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <label for="stock">Stock</label>
+                        <input 
+                            type="number" 
+                            id="stock"
+                            formControlName="stock"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                            <label for="alergenos">Alergenos</label>
+                            <input 
+                                type="text" 
+                                id="alergenos"
+                                formControlName="alergenos"
+                                class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" formGroupName="imagenes">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="imgAnv">Anverso</label>
+                                    <input 
+                                        type="file"
+                                        id="imgAnv"
+                                        (change)="onFileChange($event, 'imgAnv')"
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="imgRev">Reverso</label>
+                                    <input 
+                                        type="file"
+                                        id="imgRev"
+                                        (change)="onFileChange($event, 'imgRev')"
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="imgDet">Detalle</label>
+                                    <input 
+                                        type="file"
+                                        id="imgDet"
+                                        (change)="onFileChange($event, 'imgDet')"
+                                        class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="description">Descripción</label>
+                            <textarea 
+                                type="text" 
+                                id="description" 
+                                formControlName="breveDescripcion"
+                                class="form-control"
+                                rows="6"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12" formArrayName="uvas">
+                      <div 
+                        class="row" 
+                        *ngFor="let uvaCtrl of vinoUvas.controls; 
+                        let i = index" [formGroupName]="i">
+                        <div class="col-sm-9">
+                          <div class="form-group">
+                            <label [for]="'id' + i">Uva</label>
+                            <select 
+                                type="text" 
+                                [id]="'id' + i" 
+                                formControlName="id" 
+                                class="form-control">
+                              <option 
+                                *ngFor="let uva of listaUvas" 
+                                [value]="uva.id">{{ uva.nombre }}</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                            <label [for]="'porcentaje' + i">Porcentaje</label>
+                            <input 
+                                type="number" 
+                                [id]="'porcentaje' + i" 
+                                formControlName="porcentaje" 
+                                class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <label></label>
+                            <button 
+                                type="button" 
+                                class="btn btn-danger form-control" 
+                                (click)="onDeleteUva(i)">
+                                X
+                            </button>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 text-center">
+                        <button 
+                            type="button" 
+                            class="btn btn-secondary" 
+                            (click)="onAddUva()">
+                            Añadir Uva
+                        </button>
+                      </div>
+                    </div>
                   </div>
+                <div class="row cockpit">
+                    <div class="col-xs-12">
+                        <button 
+                            type="submit" 
+                            class="btn btn-success"
+                            [disabled]="!vinoForm.valid">
+                            Guardar
+                        </button>
+                        <button 
+                            type="button" 
+                            class="btn btn-danger"
+                            (click)="onCancel()">
+                            Cancelar
+                        </button>
+                    </div>
                 </div>
-              </div>
-            <div class="row cockpit">
-                <div class="col-xs-12">
-                    <button 
-                        type="submit" 
-                        class="btn btn-success"
-                        [disabled]="!vinoForm.valid">
-                        Guardar
-                    </button>
-                    <button 
-                        type="button" 
-                        class="btn btn-danger"
-                        (click)="onCancel()">
-                        Cancelar
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>
-

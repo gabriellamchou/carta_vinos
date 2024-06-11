@@ -19,3 +19,7 @@ a {
 tr:hover td {
     background-color: rgb(241, 241, 241);
 }
+
+.container {
+    background-color: white;
+}
