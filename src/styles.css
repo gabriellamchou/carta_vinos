@@ -43,7 +43,7 @@ footer {
 }
 
 .reduced-div {
-    width: 35%;
+    max-width: 800px;
 }
 
 .cockpit-bottom {
@@ -52,6 +52,13 @@ footer {
     button {
         width: 150px;
     }
+}
+
+a {
+    color: #A33667;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 @font-face {

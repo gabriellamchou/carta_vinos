@@ -5,6 +5,8 @@ header {
 .brand {
     font-family: "Roman SD";
     margin-top: 10px;
+    background: radial-gradient(ellipse farthest-corner at left top, #FFFFFF 0%, #FFFFAC 8%, #D1B464 25%, #d19e30 80%, #FFFFAC 100%),
+                radial-gradient(ellipse farthest-corner at right bottom, #FEDB37 0%, #FDB931 8%, #9f7928 30%, #8A6E2F 80%, transparent 100%);
     background:linear-gradient(to right, #BF953F, #cfc76a, #B38728);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

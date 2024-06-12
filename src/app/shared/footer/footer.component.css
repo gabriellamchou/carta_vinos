@@ -1,6 +1,14 @@
 footer {
     background-color: #31042C;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     padding-top: 20px;
     margin-top: 20px;
+}
+
+.socials {
+    margin-bottom: 20px;
+}
+
+span {
+    color: #dad1d8;
 }

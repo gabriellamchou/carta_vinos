@@ -16,7 +16,8 @@
 
 #anchor {
     cursor: pointer;
-    color: #0d6efd;
+    color: #94315D;
+    font-weight: bold;
 }
 
 label {
@@ -40,7 +41,7 @@ select.ng-invalid.ng-dirty:focus.ng-touched {
 .spinner {
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 40%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
