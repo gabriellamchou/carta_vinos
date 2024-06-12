@@ -1,51 +1,52 @@
-<div class="title">
-    <h2>Regiones</h2>
-    <div class="cockpit">
-      <button 
-        routerLink="/regiones/nueva" 
-        class="btn btn-primary">
-        Nueva región</button>
+<div class="container container-div">
+    <div class="title">
+        <h2>Regiones</h2>
+        <div class="cockpit">
+          <button 
+            routerLink="/regiones/nueva" 
+            class="btn btn-primary">
+            Nueva región</button>
+        </div>
     </div>
+    <div class="row content-div">
+        <div class="col-xs-12 text-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">País</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let region of listaRegiones">
+                        <td><strong>{{ region.id }}</strong></td>
+                        <td>
+                            <a 
+                                [routerLink]="['/regiones', region.id]">
+                                {{ region.nombre }}
+                            </a>
+                        </td>
+                        <td>
+                            {{ region.pais }}
+                        </td>
+                        <td>
+                            <a
+                                [routerLink]="['/regiones', region.id, 'editar']">
+                                <img src="\assets\images\edit_pencil.png">
+                            </a>
+                        </td>
+                        <td>
+                            <a
+                                (click)="onDeleteTipo(region.id)">
+                                <img src="\assets\images\delete_bin.png">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>    
 </div>
-<br><br>
-<div class="row">
-<div class="col-xs-12 text-center">
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">País</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let region of listaRegiones">
-                <td><strong>{{ region.id }}</strong></td>
-                <td>
-                    <a 
-                        [routerLink]="['/regiones', region.id]">
-                        {{ region.nombre }}
-                    </a>
-                </td>
-                <td>
-                    {{ region.pais }}
-                </td>
-                <td>
-                    <a
-                        [routerLink]="['/regiones', region.id, 'editar']">
-                        <img src="\assets\images\edit_pencil.png">
-                    </a>
-                </td>
-                <td>
-                    <a
-                        (click)="onDeleteTipo(region.id)">
-                        <img src="\assets\images\delete_bin.png">
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-  

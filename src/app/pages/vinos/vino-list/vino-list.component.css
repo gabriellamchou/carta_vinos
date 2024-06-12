@@ -10,7 +10,7 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     button {
         width: 150px;
     }
@@ -18,8 +18,4 @@ a {
 
 tr:hover td {
     background-color: rgb(241, 241, 241);
-}
-
-.container {
-    background-color: white;
 }

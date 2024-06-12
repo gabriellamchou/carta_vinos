@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container container-div">
     <div *ngIf="vino">
         <div class="row">
             <div class="col-xs-12 title">
@@ -19,40 +19,41 @@
                 </div>
             </div>
         </div>
-        <br><br>
-        <div class="row foto-vino">
-            <div class="col-sm-4">
-                <img class="img-responsive" [src]="vino.imagenes.imgAnv" [alt]="vino.nombre">
+        <div class="content-div clearfix">
+            <div class="row foto-vino">
+                <div class="col-sm-4">
+                    <img class="img-responsive" [src]="vino.imagenes.imgAnv" [alt]="vino.nombre">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>Bodega</h5>
-                <p>{{ vino.bodega.nombre }}</p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h5>Bodega</h5>
+                    <p>{{ vino.bodega.nombre }}</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>Región</h5>
-                <p>{{ vino.region.nombre }} ({{ vino.region.pais }})</p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h5>Región</h5>
+                    <p>{{ vino.region.nombre }} ({{ vino.region.pais }})</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>Tipo</h5>
-                <p>{{ vino.tipo.nombre }}</p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h5>Tipo</h5>
+                    <p>{{ vino.tipo.nombre }}</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>Precio</h5>
-                <p>{{ vino.precio }} €</p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h5>Precio</h5>
+                    <p>{{ vino.precio }} €</p>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h5>Descripción</h5>
-                <p>{{ vino.breveDescripcion }}</p>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h5>Descripción</h5>
+                    <p>{{ vino.breveDescripcion }}</p>
+                </div>
             </div>
         </div>
     </div>    

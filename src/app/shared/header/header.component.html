@@ -1,13 +1,18 @@
 <header class="navbar navbar-dark">
     <div class="container d-flex justify-content-between align-items-center">
         <a class="navbar-brand" routerLink="/home">
-            <h1 class="brand">Bacchus</h1>
+            <h1 class="brand">
+                <img src="\assets\icons\logo-d1.png" alt="Logo de Bacchus">
+                Bacchus
+            </h1>
         </a>
         <a 
             *ngIf="!isLoggedIn"
             class="btn btn-outline-light" 
             routerLink="/auth">
-            <img class="userIcon" src="\assets\icons\user.png">
+            <img
+                class="userIcon" 
+                src="\assets\icons\user\user.png">
             Iniciar Sesión
         </a>
         <a 

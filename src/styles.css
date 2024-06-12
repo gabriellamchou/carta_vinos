@@ -7,6 +7,53 @@ button.btn-primary-custom:hover {
     background-color: #A33667;
 }
 
+html,
+body {
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+}
+
+app-root {
+    min-height: 100%;
+    display: block;
+    position: relative;
+    padding-bottom: 174px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.container-div {
+    margin-bottom: 35px;
+    margin-top: 25px;
+}
+
+.content-div {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 25px;
+    -webkit-box-shadow: 5px 5px 10px -3px rgba(92, 92, 92, 0.75);
+    -moz-box-shadow: 5px 5px 10px -3px rgba(92, 92, 92, 0.75);
+    box-shadow: 5px 5px 10px -3px rgba(92, 92, 92, 0.75);
+}
+
+.reduced-div {
+    width: 35%;
+}
+
+.cockpit-bottom {
+    float: right;
+    margin-top: 5px;
+    button {
+        width: 150px;
+    }
+}
+
 @font-face {
     font-family: 'Roman SD';
     src: url('assets/fonts/Roman SD.ttf') format('truetype');

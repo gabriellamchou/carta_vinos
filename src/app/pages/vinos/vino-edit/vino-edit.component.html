@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container container-div">
     <div class="content-block">
         <h2>{{ heading }}</h2>
     </div>
-    <div class="content-block dx-card">
+    <div class="row content-div">
         <div class="col-xs-12">
             <form [formGroup]="vinoForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
                 <div class="row">
@@ -223,7 +223,7 @@
                       </div>
                     </div>
                   </div>
-                <div class="row cockpit">
+                <div class="row cockpit-bottom">
                     <div class="col-xs-12">
                         <button 
                             type="submit" 
@@ -243,3 +243,4 @@
         </div>
     </div>
 </div>
+<br>
