@@ -1,0 +1,11 @@
+<div class="card">
+    <a [routerLink]="['/vinos', vino.id]">
+        <div class="img-vino">
+            <img class="card-img-top" [src]="vino.imagenes.imgAnv" alt="{{ vino.nombre }}">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ vino.nombre }}</h5>
+            <p class="card-text">{{ vino.breveDescripcion | shorten:85 }}</p>
+        </div>
+    </a>
+</div>

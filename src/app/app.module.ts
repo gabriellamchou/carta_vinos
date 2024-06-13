@@ -26,6 +26,8 @@ import { VinoEditComponent } from './pages/vinos/vino-edit/vino-edit.component';
 import { VinoListComponent } from './pages/vinos/vino-list/vino-list.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavComponent } from './shared/nav/nav.component';
+import { CardComponent } from './shared/card/card.component';
+import { ShortenPipe } from './shared/pipes/shorten.pipe';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { NavComponent } from './shared/nav/nav.component';
     HomeComponent,
     LoadingSpinnerComponent,
     FooterComponent,
-    NavComponent
+    NavComponent,
+    CardComponent,
+    ShortenPipe
   ],
   imports: [
     BrowserModule,

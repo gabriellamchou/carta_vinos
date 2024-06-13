@@ -3,12 +3,38 @@ footer {
     padding-bottom: 30px;
     padding-top: 20px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro del footer */
+    text-align: center; /* Alinea el texto al centro */
+}
+
+.container-fluid {
+    width: 100%;
 }
 
 .socials {
+    display: flex;
+    gap: 40px;
     margin-bottom: 20px;
+    justify-content: center; /* Centra los elementos hijos dentro de .socials */
+}
+
+.socials a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 span {
     color: #dad1d8;
+}
+
+.row {
+    width: 800px;
+}
+
+.col-lg-8 {
+    display: flex;
+    justify-content: center; /* Asegura que el contenido dentro de col-lg-8 esté centrado */
 }

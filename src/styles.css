@@ -3,6 +3,20 @@ body {
     background-color: #F6EEE8;
 }
 
+button.btn-primary-custom {
+    display: inline-block;
+	font-weight: 400;
+	color: #212529;
+	text-align: center;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	color: #fff;
+	background-color: #94315D;
+}
+
 button.btn-primary-custom:hover {
     background-color: #A33667;
 }
@@ -48,17 +62,27 @@ footer {
 
 .cockpit-bottom {
     float: right;
-    margin-top: 5px;
+    margin-top: 15px;
     button {
         width: 150px;
     }
 }
 
-a {
-    color: #A33667;
+#anchor {
+    color: #94315D;
     text-decoration: none;
     cursor: pointer;
     font-weight: bold;
+}
+
+#anchor:hover {
+    color: #A33667;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
 @font-face {

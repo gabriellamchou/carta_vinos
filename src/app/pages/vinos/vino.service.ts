@@ -52,7 +52,7 @@ export class VinoService {
                 vino['Capacidad'],
                 vino['Stock'],
                 {
-                  imgAnv: null,
+                  imgAnv: vino['Imagenes'][0] || null,
                   imgRev: null,
                   imgDet: null,
                 },

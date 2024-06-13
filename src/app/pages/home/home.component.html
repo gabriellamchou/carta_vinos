@@ -2,6 +2,14 @@
 
 <div class="container container-div">
     <div class="content-div">
-        contenido aquí
+        <div class="text-center">
+            <h2>Vinos de la semana</h2>
+            <hr>
+        </div>
+        <section class="d-flex justify-content-center flex-wrap">
+            <ng-container *ngFor="let vino of vinosSemana">
+                <app-card [vino] = vino></app-card>
+            </ng-container>
+        </section>
     </div>
 </div>
